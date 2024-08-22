@@ -31,7 +31,7 @@ const NavLayout = ({ children }) => {
        <div class="flex space-x-4">
         <a onClick={() => { window.open("https://aadvlca.com/")}} class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black">አሽከርካሪና ተሽከርካሪ ፍቃድ ቁጥጥር</a>
         <a onClick={() => { window.open("https://me-qr.com/mobile/pdf/22929263")}} class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black">የ ተሽከርካሪ አሽከርካሪ ቅድመ ሁኔታ</a>
-        <a onClick={() => { navigate("/") }} class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black">አስተያየት</a>
+        <a onClick={() => { navigate("/comment") }} class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black">አስተያየት</a>
         <a onClick={() => { navigate("/login") }} class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black">ግባ</a>
        </div>
       </div>
@@ -43,7 +43,7 @@ const NavLayout = ({ children }) => {
     <div class="space-y-1 px-2 pb-3 pt-2">
      <a onClick={()=>{window.open("https://aadvlca.com/")}} class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black">አሽከርካሪና ተሽከርካሪ ፍቃድ ቁጥጥር</a>
      <a onClick={()=>{window.onabort("https://me-qr.com/mobile/pdf/22929263")}} class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black">የ ተሽከርካሪ አሽከርካሪ ቅድመ ሁኔታ</a>
-     <a onClick={() => navigate("/")} class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black">አስተያየት</a>
+     <a onClick={() => navigate("/comment")} class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black">አስተያየት</a>
      <a onClick={() => navigate("/login")} class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black">ግባ</a>
     </div>
    </div>

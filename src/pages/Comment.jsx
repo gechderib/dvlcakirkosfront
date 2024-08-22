@@ -74,6 +74,19 @@ const Comment = () => {
     setLoading(false);
    }
   };
+
+  const fetchTickets = async () => {
+   try {
+    const response = await axios.get('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/all/'); // replace with your API endpoint
+    setCurrentTicketNumber(response.data[response.data.length-1].current_ticket_number);
+    setLastTicketNumber(response.data[response.data.length-1].last_ticket_number);
+    setLoading(false);
+   } catch (error) {
+    setError(error);
+    setLoading(false);
+   }
+  };
+  fetchTickets()
   fetchStaffUsers();
 
   return () => {

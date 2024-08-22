@@ -23,13 +23,14 @@ const CommentsTable = () => {
 
   }, []);
 
-
   const renderComments = () => {
+
     if (loading) {
       return <div>Loading...</div>
     } else if (error) {
       return <div>Error: {error.message}</div>
     } else {
+      console.log(comments)
       return comments.map(comment => (
         <tr key={comment.id} className="bg-white border-b hover:bg-gray-50">
           <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
