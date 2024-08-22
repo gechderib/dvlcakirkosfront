@@ -85,7 +85,7 @@ const Comment = () => {
 
  return (
   <NavLayout>
-   <div className='sm:flex gap-10 mb-5 mt-10 '>
+   <div className='sm:flex gap-10 mb-5 mt-10 md:px-20'>
 
     <div className='sm:w-1/2 p-6 bg-white rounded-md shadow-md'>
 

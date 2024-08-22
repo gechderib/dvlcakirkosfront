@@ -24,7 +24,7 @@ const NavLayout = ({ children }) => {
       </button>
      </div>
      <div class="flex  items-center justify-between sm:items-stretch sm:justify-start">
-      <div class="flex flex-shrink-0 items-end sm:items-center ">
+      <div onClick={()=>{navigate("/")}} class="flex flex-shrink-0 items-end sm:items-center cursor-pointer">
        <img class="h-12 rounded-full w-auto" src={logo} alt="Your Company"></img>
       </div>
       <div class="hidden sm:ml-6 sm:block">

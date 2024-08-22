@@ -9,7 +9,8 @@ function App() {
 
   return (<BrowserRouter>
     <Routes>
-      <Route exact path="/" element={<Comment/>} />
+      <Route exact path="/" element={<Home/>} />
+      <Route exact path="/comment" element={<Comment/>} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/dashboard" element={<Dashboard />} />
     </Routes>
