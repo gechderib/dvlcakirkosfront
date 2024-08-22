@@ -23,9 +23,6 @@ const CommentsTable = () => {
 
   }, []);
 
-//   ይታወስ ተሾመ
-// ደረጀ መነምሻ 
-// የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽፈት ቤት
 
   const renderComments = () => {
     if (loading) {
