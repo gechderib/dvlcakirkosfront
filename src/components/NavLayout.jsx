@@ -105,30 +105,30 @@ import axios from 'axios';
 
 const NavLayout = ({ children }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+  // useEffect(() => {
+  //   const fetchUserProfile = async () => {
+  //     try {
+  //       const token = localStorage.getItem('authToken'); // Retrieve token from local storage
+  //       if (!token) {
+  //         throw new Error('No authentication token found.');
+  //       }
+  //       const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/profile', {
+  //         headers: {
+  //           Authorization: `Token ${token}`,
+  //         },
+  //       });
+  //       setUser(response.data);
+  //       localStorage.setItem('user', JSON.stringify(response.data));
+  //     } catch (error) {
+  //       console.error('There was an error fetching the documents!', error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const token = localStorage.getItem('authToken'); // Retrieve token from local storage
-        if (!token) {
-          throw new Error('No authentication token found.');
-        }
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/profile', {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
-        setUser(response.data);
-        localStorage.setItem('user', JSON.stringify(response.data));
-      } catch (error) {
-        console.error('There was an error fetching the documents!', error);
-      }
-    };
-
-    fetchUserProfile();
-  }, []);
+  //   fetchUserProfile();
+  // }, []);
 
   return (
     <div>
