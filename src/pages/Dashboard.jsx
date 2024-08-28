@@ -5,10 +5,17 @@ import CommentsTable from '../components/CommentsTable'
 import GeneralCommentTable from '../components/GeneralCommentTable'
 import Ticket from '../components/Ticket'
 import NavLayout from '../components/NavLayout'
+import DocumentManager from '../components/Workflow'
+import DocumentTable from '../components/WorkflowTwo'
+import ReportComponent from '../components/WorkReport'
 const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState('user');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user);
+ 
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -38,7 +45,7 @@ const Dashboard = () => {
           </div>
 
           <nav className='flex flex-col gap-1 p-2 font-sans text-base font-normal text-gray-700'>
-            <div
+            {user.role === "admin" && <div
               onClick={() => { setSelectedTab('user'); setIsSidebarOpen(false); }}
               role='button'
               className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'user' ? 'bg-blue-50 text-blue-900' : ''
@@ -50,9 +57,9 @@ const Dashboard = () => {
                 </svg>
               </div>
               ሰራተኞች
-            </div>
+            </div>}
 
-            <div
+            {user.role === "admin" && <div
               onClick={() => { setSelectedTab('comments'); setIsSidebarOpen(false); }}
               role='button'
               className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'comments' ? 'bg-blue-50 text-blue-900' : ''
@@ -64,9 +71,9 @@ const Dashboard = () => {
                 </svg>
               </div>
               አስተያየቶች
-            </div>
+            </div>}
 
-            <div
+           {user.role === "admin" && <div
               onClick={() => { setSelectedTab('gcomments'); setIsSidebarOpen(false); }}
               role='button'
               className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'gcomments' ? 'bg-blue-50 text-blue-900' : ''
@@ -78,7 +85,7 @@ const Dashboard = () => {
                 </svg>
               </div>
               ጠቅላላ አስተያየቶች
-            </div>
+            </div>}
 
             <div
               onClick={() => { setSelectedTab('ticket'); setIsSidebarOpen(false); }}
@@ -94,7 +101,34 @@ const Dashboard = () => {
               ቲኬቶች
             </div>
 
-
+            <div
+              onClick={() => { setSelectedTab('workflow'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'workflow' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="m600-200-56-57 143-143H300q-75 0-127.5-52.5T120-580q0-75 52.5-127.5T300-760h20v80h-20q-42 0-71 29t-29 71q0 42 29 71t71 29h387L544-624l56-56 240 240-240 240Z" />
+                </svg>
+              </div>
+              የስራ ፍሰት
+            </div>
+            
+            {user.role === "admin" && <div
+              onClick={() => { setSelectedTab('report'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'report' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="m600-200-56-57 143-143H300q-75 0-127.5-52.5T120-580q0-75 52.5-127.5T300-760h20v80h-20q-42 0-71 29t-29 71q0 42 29 71t71 29h387L544-624l56-56 240 240-240 240Z" />
+                </svg>
+              </div>
+              ሪፖርት
+            </div>}
+            
             <div onClick={()=>{navigate("/")}} role="button" className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
               <div className="grid place-items-center mr-4" onClick={() => { navigate("/login") }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-5 w-5">
@@ -110,6 +144,14 @@ const Dashboard = () => {
           {selectedTab === "comments" && <CommentsTable />}
           {selectedTab === "gcomments" && <GeneralCommentTable />}
           {selectedTab === "ticket" && <Ticket />}
+
+          {selectedTab === "workflow" && user.role === "user1" && <DocumentManager />}
+          {selectedTab === "workflow" && user.role === "user2" && <DocumentTable fetchType="start" updateTo="checked" />}
+          {selectedTab === "workflow" && user.role === "user3" && <DocumentTable fetchType="checked" updateTo="scanned" />}
+          {selectedTab === "workflow" && user.role === "user4" && <DocumentTable fetchType="scanned" updateTo="recorded" />}
+
+          {selectedTab === "workflow" && user.role === "admin" && <DocumentTable fetchType="recorded" updateTo="recorded" />}
+          {selectedTab === "report" && user.role === "admin" && <ReportComponent />}
         </div>
 
       </div>
