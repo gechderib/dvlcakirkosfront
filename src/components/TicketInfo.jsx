@@ -15,12 +15,12 @@ const TicketInfo = ({isLoading, error,currentTicket, awaitingTickets, totalTicke
         </div>
 
         <div className="p-4 bg-gray-100 rounded-md text-center">
-          <div className="text-sm sm:text-xl text-gray-500">የአሁኑ የቲኬት ቁጥር</div>
+          <div className="text-sm sm:text-xl text-gray-500">በመጠበቅ ላይ ያሉ ሰውች </div>
           <div className="text-xl lg:text-2xl md:text-xl font-bold text-gray-900">{isLoading? <span className='animate-ping'>...</span>:currentTicket}</div>
         </div>
 
         <div className="p-4 bg-gray-100 rounded-md text-center">
-          <div className="text-sm sm:text-xl text-gray-500">ትኬቶችን በመጠባበቅ ላይ</div>
+          <div className="text-sm sm:text-xl text-gray-500">የአሁኑ የቲኬት ቁጥር</div>
           <div className="text-xl lg:text-2xl md:text-xl font-bold text-gray-900">{isLoading? <span className='animate-ping'>...</span>:awaitingTickets}</div>
         </div>
 

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ServiceAvailabilityToggle from './ServiceAvailabilityToggle';
 
 const DocumentTable = ({ fetchType, updateTo }) => {
  const [documents, setDocuments] = useState([]);
  const [searchQuery, setSearchQuery] = useState('');
  const [currentPage, setCurrentPage] = useState(1);
  const [itemsPerPage] = useState(10);
+
+ const [isServiceAvailable, setIsServiceAvailable] = useState(true)
 
  const token = localStorage.getItem('authToken');
 
@@ -66,7 +69,12 @@ const DocumentTable = ({ fetchType, updateTo }) => {
 
  return (
   <div className="container mx-auto p-4">
-   <h1 className="text-2xl font-semibold mb-4">Document List</h1>
+   <div className="flex justify-between items-center mb-4">
+    <h1 className="text-2xl font-semibold mb-4">
+     Document List ({documents.length})
+    </h1>
+    {user.role === "admin" && <ServiceAvailabilityToggle/>}
+   </div>
 
    <input
     type="text"

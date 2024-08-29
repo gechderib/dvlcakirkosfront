@@ -8,9 +8,13 @@ const RegisterModal = ({ isOpen, onClose }) => {
     phone_number: '',
     password: '',
     profile_pic: null,
+    role: 'user1',  // Default value
+    window_number: '',
   });
+
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +33,9 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');  // Clear previous errors
-    setSuccess('');  // Clear previous success messages
+    setError(''); // Clear previous errors
+    setSuccess(''); // Clear previous success messages
+    setLoading(true); // Set loading state
 
     const form = new FormData();
     form.append('first_name', formData.first_name);
@@ -38,6 +43,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
     form.append('phone_number', formData.phone_number);
     form.append('password', formData.password);
     form.append('profile_pic', formData.profile_pic);
+    form.append('role', formData.role);
+    form.append('window_number', formData.window_number);
 
     try {
       const response = await axios.post(
@@ -50,11 +57,15 @@ const RegisterModal = ({ isOpen, onClose }) => {
         }
       );
       
-      setSuccess('Registration successful!');  // Show success message
-      setTimeout(onClose, 1500);  // Close the modal after 1.5 seconds
+      setSuccess('Registration successful!'); // Show success message
+      setLoading(false); // Reset loading state
+      setTimeout(() => {
+        onClose(); // Close the modal after 1.5 seconds
+      }, 1500);
     } catch (error) {
       const errorMessage = error.response?.data?.detail || 'Registration failed. Please try again.';
       setError(errorMessage);
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -72,6 +83,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit} className="px-8 py-4">
           {error && <div className="mb-4 text-red-500 text-sm">{error}</div>}
           {success && <div className="mb-4 text-green-500 text-sm">{success}</div>}
+          {loading && <div className="mb-4 text-blue-500 text-sm">Registering...</div>}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="first_name">
               First Name
@@ -140,6 +152,37 @@ const RegisterModal = ({ isOpen, onClose }) => {
               className="w-full text-gray-700"
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
+              Role
+            </label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+            >
+              <option value="user1">User 1</option>
+              <option value="user2">User 2</option>
+              <option value="user3">User 3</option>
+              <option value="user4">User 4</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="window_number">
+              Window Number
+            </label>
+            <input
+              type="text"
+              id="window_number"
+              name="window_number"
+              value={formData.window_number}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              required
+            />
+          </div>
           <div className="flex justify-end">
             <button
               type="button"
@@ -151,8 +194,9 @@ const RegisterModal = ({ isOpen, onClose }) => {
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              disabled={loading} // Disable button while loading
             >
-              Register
+              {loading ? 'Registering...' : 'Register'}
             </button>
           </div>
         </form>

@@ -8,6 +8,8 @@ import NavLayout from '../components/NavLayout'
 import DocumentManager from '../components/Workflow'
 import DocumentTable from '../components/WorkflowTwo'
 import ReportComponent from '../components/WorkReport'
+import UserSatisfaction from '../components/UserSatisfaction'
+import Login from './Login'
 const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState('user');
@@ -20,7 +22,10 @@ const Dashboard = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
+  
+  if(!localStorage.getItem('authToken')){
+    return <Login/>
+  }
   return (
     <NavLayout>
       <div className='flex flex-col sm:flex-row h-screen'>
@@ -128,7 +133,20 @@ const Dashboard = () => {
               </div>
               ሪፖርት
             </div>}
-            
+            {user.role === "admin" && <div
+              onClick={() => { setSelectedTab('topthree'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'topthree' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z" />
+                </svg>
+              </div>
+              ከፍተኛ ሶስት
+            </div>}
+
             <div onClick={()=>{navigate("/")}} role="button" className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
               <div className="grid place-items-center mr-4" onClick={() => { navigate("/login") }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-5 w-5">
@@ -152,6 +170,7 @@ const Dashboard = () => {
 
           {selectedTab === "workflow" && user.role === "admin" && <DocumentTable fetchType="recorded" updateTo="recorded" />}
           {selectedTab === "report" && user.role === "admin" && <ReportComponent />}
+          {selectedTab === "topthree" && user.role === "admin" && <UserSatisfaction />}
         </div>
 
       </div>

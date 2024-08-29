@@ -10,6 +10,9 @@ const Comment = () => {
   profile_pic: 'https://via.placeholder.com/150',
   first_name: 'አበበ ',
   last_name: 'በቅለ',
+  role: "user1",
+  phone_number: '0966778899',
+  window_number: '456'
  },);
  const [levelOfSatisfaction, setLevelOfSatisfaction] = useState("");
  const [content, setContent] = useState('');
@@ -26,6 +29,9 @@ const Comment = () => {
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState(null);
 
+ const [isAvailable, setIsAvailable] = useState(null);
+
+
 
 
 
@@ -41,10 +47,8 @@ const Comment = () => {
    level_of_satisfaction: levelOfSatisfaction,
    ticket: ticket,
    content: content,
-   window_number: windowNumber,
+   window_number: selectedUser.window_number,
   };
-
-  console.log(data);
 
   try {
    const url = commentType == 'touser' ? 'https://driver-and-vehicle-license.onrender.com/comments/create/' : "https://driver-and-vehicle-license.onrender.com/comments/general/create/";
@@ -78,16 +82,29 @@ const Comment = () => {
   const fetchTickets = async () => {
    try {
     const response = await axios.get('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/all/'); // replace with your API endpoint
-    setCurrentTicketNumber(response.data[response.data.length-1].current_ticket_number);
-    setLastTicketNumber(response.data[response.data.length-1].last_ticket_number);
+    setCurrentTicketNumber(response.data[response.data.length - 1].current_ticket_number);
+    setLastTicketNumber(response.data[response.data.length - 1].last_ticket_number);
     setLoading(false);
    } catch (error) {
     setError(error);
     setLoading(false);
    }
   };
-  fetchTickets()
+
+
+  const fetchAvailabilityStatus = async () => {
+   try {
+    const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/service-availability/');
+    setIsAvailable(response.data.is_available);
+    setLoading(false);
+   } catch (err) {
+    setError('Error fetching the service availability status');
+    setLoading(false);
+   }
+  };
+  fetchTickets();
   fetchStaffUsers();
+  fetchAvailabilityStatus();
 
   return () => {
    eventSource.close();
@@ -143,19 +160,20 @@ const Comment = () => {
           <div
            key={user.id}
            onClick={() => { toggleDropdown(); setSelectedUser(user) }}
-           className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+           className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer gap-5 justify-between"
           >
-           <img
+           {/* <img
             src={user.profile_pic}
             alt="User"
             className="w-20 h-20 "
-           />
-           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-900">
-             {user.first_name}
-            </p>
-            <p className="text-sm text-gray-500">{user.last_name}</p>
-           </div>
+           /> */}
+           <p className="text-sm font-medium">
+            Fullname: {user.first_name} {user.last_name}
+           </p>
+           <p className="text-sm ">
+            Window Number: {user.window_number}
+           </p>
+
           </div>
          ))}
         </div>
@@ -165,6 +183,17 @@ const Comment = () => {
 
 
      <form onSubmit={handleSubmit} className="">
+      {commentType == 'touser' && <div className="mb-4">
+       <label htmlFor="window_number" className="block text-sm font-medium text-gray-700">የመስኮት ቁጥር</label>
+       <input
+        type="text"
+        disabled
+        id="window_number"
+        value={selectedUser.window_number}
+        onChange={(e) => setWindowNumber(selectedUser.window_number)}
+        class="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" placeholder="የመስኮት ቁጥር ያስገቡ"
+       ></input>
+      </div>}
       {<div className="mb-4">
        <label htmlFor="level_of_satisfaction" className="block text-sm font-medium text-gray-700">የ እርካታ መጠን ከ ፭</label>
 
@@ -192,16 +221,7 @@ const Comment = () => {
        ></input>
       </div>}
 
-      {commentType == 'touser' && <div className="mb-4">
-       <label htmlFor="window_number" className="block text-sm font-medium text-gray-700">የመስኮት ቁጥር</label>
-       <input
-        type="text"
-        id="window_number"
-        value={windowNumber}
-        onChange={(e) => setWindowNumber(e.target.value)}
-        class="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" placeholder="የመስኮት ቁጥር ያስገቡ"
-       ></input>
-      </div>}
+
 
 
       <div className="mb-4">
@@ -216,18 +236,39 @@ const Comment = () => {
 
       </div>
       <button type="submit" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      አስተያየት ይላኩ
+       አስተያየት ይላኩ
       </button>
      </form>
 
     </div>
 
     <div className='sm:w-1/2'>
-     <TicketInfo
+     <div className=" mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="bg-cover bg-center h-64 p-4" style={{ backgroundImage: `url(${selectedUser.profile_pic})` }}>
+       <div className="flex justify-center">
+        <img
+         className="rounded-full h-24 w-24 border-2 border-white"
+         src={selectedUser.profile_pic}
+         alt={`${selectedUser.first_name} ${selectedUser.last_name}`}
+        />
+       </div>
+      </div>
+      <div className="p-4">
+       <h1 className="text-gray-900 font-bold text-2xl">{`${selectedUser.first_name} ${selectedUser.last_name}`}</h1>
+       <p className="text-gray-600 text-xl">Role: {selectedUser.role}</p>
+       <p className="text-gray-600 text-xl">Phone: {selectedUser.phone_number}</p>
+       <p className="text-gray-600 text-xl">Window Number: {selectedUser.window_number}</p>
+      </div>
+     </div>
+
+     {isAvailable ? <TicketInfo
       currentTicket={currentTicketNumber}
       awaitingTickets={Number(lastTicketNumber) - Number(currentTicketNumber)}
       totalTickets={lastTicketNumber}
-     />
+     /> : <div>
+      Servie is not availability available
+      </div>}
+
     </div>
 
    </div>

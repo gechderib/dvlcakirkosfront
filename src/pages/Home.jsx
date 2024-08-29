@@ -12,6 +12,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [isAvailable, setIsAvailable] = useState(null);
+
 
   useEffect(() => {
     // const eventSource = new EventSource('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/');
@@ -21,7 +23,16 @@ const Home = () => {
     //   setCurrentTicketNumber(data.current_ticket_number);
     //   setLastTicketNumber(data.last_ticket_number);
     // };
-
+    const fetchAvailabilityStatus = async () => {
+      try {
+        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/service-availability/');
+        setIsAvailable(response.data.is_available);
+        setLoading(false);
+      } catch (err) {
+        setError('Error fetching the service availability status');
+        setLoading(false);
+      }
+    };
 
     const fetchTickets = async () => {
       try {
@@ -36,6 +47,7 @@ const Home = () => {
       }
     };
     fetchTickets()
+    fetchAvailabilityStatus()
 
 
     // return () => {
@@ -70,13 +82,23 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <TicketInfo
-            isLoading={loading}
-            error={error}
-            currentTicket={currentTicketNumber}
-            awaitingTickets={Number(lastTicketNumber) - Number(currentTicketNumber)}
-            totalTickets={lastTicketNumber}
-          />
+          {
+            isAvailable ? <TicketInfo
+              isLoading={loading}
+              error={error}
+              currentTicket={currentTicketNumber}
+              awaitingTickets={Number(lastTicketNumber) - Number(currentTicketNumber)}
+              totalTickets={lastTicketNumber}
+            /> : <div className='text-lg px-2 flex flex-col gap-2'>
+              <p className='font-bold text-3xl underline'>አገልግሎት የለም </p>
+              <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ስላደረጋችሁልን እናመሰግናለን። </p>
+              <p>የምንሠራው ለፈቃድ እና ከቁጥር ጋር በተያያዙ ቀናት ብቻ ስለሆነ አገልግሎታችን በአሁኑ ጊዜ የማይገኝ መሆኑን ለማሳወቅ እንወዳለን። </p>
+              <p>እባክዎን የአገልግሎት መርሃ ግብራችንን ይመልከቱ ወይም በሚቀጥለው የአገልግሎት ቀን ላይ ለበለጠ መረጃ ያግኙን። </p>
+              <p>የእርስዎን ግንዛቤ እናመሰግናለን እናም በቅርቡ እርስዎን ለማገልገል በጉጉት እንጠባበቃለን።</p>
+
+            </div>
+          }
+
         </div>
       </div>
 
