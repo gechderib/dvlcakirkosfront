@@ -265,9 +265,14 @@ const Comment = () => {
       currentTicket={currentTicketNumber}
       awaitingTickets={Number(lastTicketNumber) - Number(currentTicketNumber)}
       totalTickets={lastTicketNumber}
-     /> : <div>
-      Servie is not availability available
-      </div>}
+     /> : <div className='text-lg px-2 flex flex-col gap-2 mt-5'>
+      <p className='font-bold text-3xl underline'>አገልግሎት የለም </p>
+      <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ስለተጠቀማቹ እናመሰግናለን </p>
+      <p>የምንሠራው ለተወሰኑ ቀናት ብቻ ስለሆነ አገልግሎታችን በአሁኑ ጊዜ የማይገኝ መሆኑን ለማሳወቅ እንወዳለን። </p>
+      <p>እባክዎን የአገልግሎት መርሃ ግብራችንን ይመልከቱ ወይም በሚቀጥለው የአገልግሎት ቀን ላይ ለበለጠ መረጃ ያግኙን። </p>
+      <p>የእርስዎን ግንዛቤ እናመሰግናለን እናም በቅርቡ እርስዎን ለማገልገል በጉጉት እንጠባበቃለን።</p>
+
+     </div>}
 
     </div>
 
