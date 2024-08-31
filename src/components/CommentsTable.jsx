@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const CommentsTable = () => {
+const CommentsTable = ({isUser = false}) => {
 
   const [comments, setComments] = useState([]);
+  const [userComments, setUserComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const token = localStorage.getItem('authToken'); 
   useEffect(() => {
 
     const fetchComments = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/all/'); // replace with your API endpoint
+        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/all/');
         setComments(response.data);
         setLoading(false);
       } catch (error) {
@@ -19,7 +20,27 @@ const CommentsTable = () => {
         setLoading(false);
       }
     };
+
+    const fetchUserComments = async () => {
+      try {
+        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/user/', {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setUserComments(response.data);
+        console.log(response.data);
+        console.log("User comments")
+        setLoading(false);
+      } catch (error) {
+        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeee")
+        console.log(error)
+        setError(error);
+        setLoading(false);
+      }
+    };
     fetchComments();
+    fetchUserComments()
 
   }, []);
 
@@ -31,7 +52,8 @@ const CommentsTable = () => {
       return <div>Error: {error.message}</div>
     } else {
       console.log(comments)
-      return comments.map(comment => (
+      const comment = isUser ? userComments : comments
+      return comment.map(comment => (
         <tr key={comment.id} className="bg-white border-b hover:bg-gray-50">
           <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
             <img className="w-10 h-10 rounded-full" src={comment.to_user.profile_pic} alt={`${comment.to_user.first_name} ${comment.to_user.last_name}`}></img>
@@ -69,19 +91,19 @@ const CommentsTable = () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-              አስተያየት የተሰጠው ሰራተኛ
+                አስተያየት የተሰጠው ሰራተኛ
               </th>
               <th scope="col" className="px-6 py-3">
-              የቲኬት ቁጥር
+                የቲኬት ቁጥር
               </th>
               <th scope="col" className="px-6 py-3">
-              የመስኮት ቁጥር
+                የመስኮት ቁጥር
               </th>
               <th scope="col" className="px-6 py-3">
-              የእርካታ ደረጃ ከ ፭
+                የእርካታ ደረጃ ከ ፭
               </th>
               <th scope="col" className="px-6 py-3">
-              ይዘት
+                ይዘት
               </th>
             </tr>
           </thead>

@@ -69,7 +69,7 @@ const UsersTable = () => {
       <div className='flex justify-end mb-5'>
         <div onClick={()=>{handleOpenModal()}} className='bg-blue-500 cursor-pointer text-white w-40 px-3 py-2 text-center'>ሰራተኞችን ይጨምሩ
         </div>
-        <RegisterModal isOpen={isModalOpen} onClose={()=>{handleCloseModal}}/>
+        <RegisterModal isOpen={isModalOpen} onClose={()=>{handleCloseModal()}}/>
       </div>
       <div className="h-96 overflow-y-auto"> {/* Set fixed height and enable vertical scrolling */}
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">

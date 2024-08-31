@@ -17,11 +17,13 @@ const NavLayout = ({ children }) => {
   //       if (!token) {
   //         throw new Error('No authentication token found.');
   //       }
-  //       const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/profile', {
+  //       const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/profile', 
+  // {
   //         headers: {
   //           Authorization: `Token ${token}`,
   //         },
-  //       });
+  //       }
+  // );
   //       setUser(response.data);
   //       localStorage.setItem('user', JSON.stringify(response.data));
   //     } catch (error) {

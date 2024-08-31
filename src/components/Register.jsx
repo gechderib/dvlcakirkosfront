@@ -56,16 +56,25 @@ const RegisterModal = ({ isOpen, onClose }) => {
           },
         }
       );
-      
+
       setSuccess('Registration successful!'); // Show success message
       setLoading(false); // Reset loading state
       setTimeout(() => {
         onClose(); // Close the modal after 1.5 seconds
       }, 1500);
     } catch (error) {
-      const errorMessage = error.response?.data?.detail || 'Registration failed. Please try again.';
-      setError(errorMessage);
       setLoading(false); // Reset loading state
+
+      // Extract error messages
+      if (error.response && error.response.data) {
+        const errors = error.response.data;
+        const errorMessages = Object.entries(errors)
+          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+          .join(' | ');
+        setError(errorMessages);
+      } else {
+        setError('Registration failed. Please try again.');
+      }
     }
   };
 
@@ -163,10 +172,10 @@ const RegisterModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
             >
-              <option value="user1">User 1</option>
-              <option value="user2">User 2</option>
-              <option value="user3">User 3</option>
-              <option value="user4">User 4</option>
+              <option value="user1">ፈጳሚ</option>
+              <option value="user2">ኦዲተር</option>
+              <option value="user3">ማረጃ ሰብሳቢ</option>
+              <option value="user4">መዝገብ ቤት</option>
             </select>
           </div>
           <div className="mb-4">

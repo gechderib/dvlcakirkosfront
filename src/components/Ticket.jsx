@@ -64,7 +64,7 @@ const Ticket = () => {
         <ul className="space-y-2">
           {previousTickets.map((ticket) => (
             <li key={ticket.id} className="p-2 bg-white rounded-md shadow-sm">
-              <p className="text-sm">የአሁኑ ትኬት: {ticket.current_ticket_number}</p>
+              <p className="text-sm">በመጠበቅ ላይ ያሉ ሰውች: {ticket.current_ticket_number}</p>
               <p className="text-sm">የመጨረሻው ትኬት : {ticket.last_ticket_number}</p>
               <p className="text-xs text-gray-500">የዘመነ በ
               : {new Date(ticket.updated_at).toLocaleString()}</p>
@@ -79,7 +79,7 @@ const Ticket = () => {
         
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2">
-          የአሁኑ የቲኬት ቁጥር
+          በመጠበቅ ላይ ያሉ ሰውች
           </label>
           <input
             type="number"

@@ -11,6 +11,7 @@ const ReportComponent = () => {
   const [reports, setReports] = useState([]);
   const [filteredReports, setFilteredReports] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchCreatedBy, setSearchCreatedBy] = useState(''); // New state for searching by Created By
   const [itemsPerPage] = useState(10); // Number of items per page
   const statuses = ['start', 'checked', 'scanned', 'recorded'];
 
@@ -47,11 +48,19 @@ const ReportComponent = () => {
         filtered = filtered.filter(report => report.file_status === status);
       }
 
+      if (searchCreatedBy) {
+        filtered = filtered.filter(report =>
+          `${report.file_created_by.first_name} ${report.file_created_by.last_name}`
+            .toLowerCase()
+            .includes(searchCreatedBy.toLowerCase())
+        );
+      }
+
       setFilteredReports(filtered);
     };
 
     applyFilters();
-  }, [reports, status]);
+  }, [reports, status, searchCreatedBy]);
 
   // Calculate the indices for slicing the reports
   const indexOfLastReport = currentPage * itemsPerPage;
@@ -105,12 +114,23 @@ const ReportComponent = () => {
               ))}
             </select>
           </div>
+          <div className="mb-4 sm:mb-0 sm:mr-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">Search by Created By</label>
+            <input
+              type="text"
+              value={searchCreatedBy}
+              onChange={e => setSearchCreatedBy(e.target.value)}
+              className="border border-gray-300 rounded p-2"
+              placeholder="Enter creator's name"
+            />
+          </div>
         </div>
 
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Serial Number</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th>
@@ -122,6 +142,9 @@ const ReportComponent = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {currentReports.map(report => (
                 <tr key={report.id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {report.file_created_by.first_name + " " + report.file_created_by.last_name}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.file_serial_number}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_name}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_content}</td>
@@ -156,7 +179,6 @@ const ReportComponent = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

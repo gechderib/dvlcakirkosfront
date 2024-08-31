@@ -10,7 +10,7 @@ const TicketInfo = ({isLoading, error,currentTicket, awaitingTickets, totalTicke
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2">
         <div className="p-4 bg-gray-100 rounded-md text-center">
-          <div className="text-sm sm:text-xl text-gray-500">የአሁኑ ቀን</div>
+          <div className="text-sm sm:text-xl text-gray-500">በየሰአቱ የሚታደስ</div>
           <div className="text-xl lg:text-2xl md:text-xl font-bold text-gray-900">{isLoading? <span className='animate-ping'>...</span>: currentDate}</div>
         </div>
 
@@ -25,7 +25,7 @@ const TicketInfo = ({isLoading, error,currentTicket, awaitingTickets, totalTicke
         </div>
 
         <div className="p-4 bg-gray-100 rounded-md text-center">
-          <div className="text-sm sm:text-xl text-gray-500">ጠቅላላ ትኬቶች</div>
+          <div className="text-sm sm:text-xl text-gray-500">የመጨረሻዉ የ ትኬት ቁጥር</div>
           <div className="text-xl lg:text-2xl md:text-xl font-bold text-gray-900">{isLoading? <span className='animate-ping'>...</span>:totalTickets}</div>
         </div>
       </div>
