@@ -3,6 +3,7 @@ import axios from 'axios';
 import TicketInfo from '../components/TicketInfo';
 import NavLayout from '../components/NavLayout';
 import { useTranslation } from 'react-i18next';
+import FloatingButton from '../components/FloatingButton';
 
 const Comment = () => {
  const [selectedUser, setSelectedUser] = useState({
@@ -115,6 +116,7 @@ const Comment = () => {
 
  return (
   <NavLayout>
+   {/* <FloatingButton/> */}
    <div className='sm:flex gap-10 mb-5 mt-10 md:px-20'>
     <div className='sm:w-full p-6 bg-white rounded-md shadow-md'>
      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-10">

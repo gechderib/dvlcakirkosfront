@@ -2,12 +2,14 @@ import React from 'react'
 import NewsList from '../components/news/NewsList'
 import NavLayout from '../components/NavLayout'
 import { useTranslation } from 'react-i18next';
+import FloatingButton from '../components/FloatingButton';
 
 const NewsPage = () => {
  const { t, i18n } = useTranslation();
 
  return (
   <NavLayout>
+   <FloatingButton/>
    <div className="bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 flex items-center justify-center p-10">
     <div className="bg-white rounded-xl shadow-xl overflow-hidden w-full max-w-4xl">
      <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-10">

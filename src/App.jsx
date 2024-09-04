@@ -19,7 +19,6 @@ function App() {
       <Route exact path="/news" element={<NewsPage />} />
       <Route exact path="/service" element={<ServicePage />} />
       <Route exact path="/help" element={<RulesAndHelp />} />
-
     </Routes>
   </BrowserRouter>
   )

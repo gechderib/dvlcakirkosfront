@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const DocumentForm = () => {
   const [fileSerialNumber, setFileSerialNumber] = useState('');
-  const [fileName, setFileName] = useState('');
+  const [fileName, setFileName] = useState('aaa');
   const [fileContent, setFileContent] = useState('');
   const [serviceFor, setServiceFor] = useState('vehicle');
   const [serviceType, setServiceType] = useState('')
@@ -187,7 +187,7 @@ const DocumentForm = () => {
   return (
     <div className="md:flex">
       {/* Form for adding a new document */}
-      <div className="md:w-1/2 p-4">
+      <div className="md:w-full p-4">
         {/* <h2 className="text-xl mb-4">Add Document</h2> */}
 
         <label className="block text-gray-700 mb-3">Document Type</label>
@@ -212,7 +212,7 @@ const DocumentForm = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">File Serial Number</label>
+            <label className="block text-gray-700">Plate Number</label>
             <input
               type="text"
               value={fileSerialNumber}
@@ -221,7 +221,7 @@ const DocumentForm = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-gray-700">File Name</label>
             <input
               type="text"
@@ -230,7 +230,7 @@ const DocumentForm = () => {
               className="w-full border border-gray-300 rounded p-2"
               required
             />
-          </div>
+          </div> */}
 
 
          {serviceFor === "vehicle" && <div className="mb-4">
@@ -264,10 +264,15 @@ const DocumentForm = () => {
               required={serviceFor === "vehicle"}
             >
               <option value="">Select Plate Code</option>
-              <option value="plate1">Plate One</option>
-              <option value="plate2">Plate Two</option>
-              <option value="plate3">Plate Three</option>
-              <option value="plate4">Plate Four</option>
+              <option value="plate1">1</option>
+              <option value="plate2">2</option>
+              <option value="plate3">3</option>
+              <option value="plate4">4</option>
+              <option value="plate4">5</option>
+              <option value="plate4">EU</option>
+              <option value="plate4">CD</option>
+              <option value="plate4">UN</option>
+
             </select>
           </div>}
           {serviceFor === "vehicle" && <div className="mb-4">
@@ -280,8 +285,8 @@ const DocumentForm = () => {
 
             >
               <option value="">Select Region</option>
-              <option value="aa">Region One</option>
-              <option value="et">Region Two</option>
+              <option value="aa">Addis Ababa</option>
+              <option value="et">Ethiopia</option>
             </select>
           </div>}
 
@@ -331,7 +336,7 @@ const DocumentForm = () => {
             className={`w-full p-2 bg-blue-500 text-white rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Submit'}
+            {loading ? 'Loading...' : !loading && selected == "newFile"? "Add New File": "Request Approval"}
           </button>
         </form>
         {error && <p className="text-red-500 mt-4">{error}</p>}
@@ -339,7 +344,7 @@ const DocumentForm = () => {
       </div>
 
       {/* Documents List */}
-      <div className="md:w-1/2 p-4">
+      {/* <div className="md:w-1/2 p-4">
         <h2 className="text-xl mb-4">Documents List</h2>
         <table className="min-w-full border border-gray-300">
           <thead>
@@ -371,7 +376,7 @@ const DocumentForm = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };

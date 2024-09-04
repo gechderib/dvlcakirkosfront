@@ -2,13 +2,15 @@ import React from 'react'
 import NavLayout from '../components/NavLayout'
 import OfficeAndObligation from '../components/news/OfficeAndObligation'
 import { useTranslation } from 'react-i18next';
+import FloatingButton from '../components/FloatingButton';
 
 const RulesAndHelp = () => {
  const { t, i18n } = useTranslation();
 
  return (
   <NavLayout>
-   <div className="p-8 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500  flex items-center justify-center">
+   <FloatingButton/>
+   <div className="px-8 py-20 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500  flex items-center justify-center">
     <div className="bg-white p-8 rounded-3xl shadow-xl max-w-3xl relative overflow-hidden">
      {/* <div className="absolute inset-0 bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-200 opacity-50 z-0"></div> */}
 

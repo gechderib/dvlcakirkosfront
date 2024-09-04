@@ -5,6 +5,7 @@ import TicketInfo from '../components/TicketInfo';
 import axios from 'axios';
 import UserSatisfaction from '../components/UserSatisfaction';
 import { useTranslation } from 'react-i18next';
+import MissionVision from '../components/MissionVision';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -61,28 +62,23 @@ const Home = () => {
   }, []);
   return (
     <NavLayout>
-              <div className="flex flex-col items-center justify-center py-14">
-          <h1 className="text-4xl font-bold text-center text-blue-800 mb-8 w-2/3">
-            የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽፈት ቤት
-          </h1>
-          <p className="text-lg text-gray-700 mb-4 md:mb-10 md:w-2/3 text-center bg-5">
-            እንኳን ወደ መንጃ ፍቃድ እና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ድህረ ገጽ በደህና መጡ። ዋና አላማችን አገልግሎቶቻችንን እና ስራዎችን በተመለከተ ከተጠቃሚዎች አስተያየቶችን እና አስተያየቶችን መቀበል ነው። የእርስዎን ግብአት ዋጋ እንሰጣለን እና ሀሳብዎን እንዲያካፍሉን እናበረታታዎታለን
-          </p>
-          <button
-            onClick={() => navigate("/comment")}
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300 md:ml-4"
-          >
-            አስተያየት ይስጡ
-          </button>
-          {/* <div className="text-center mt-12">
-            <h2 className="text-2xl font-semibold text-blue-700 mb-2">
-              ዳይሬክተር: <span className="font-bold text-blue-900">ይታወስ ተሾመ</span>
-            </h2>
-            <h2 className="text-2xl font-semibold text-blue-700">
-              አስተዳዳሪ: <span className="font-bold text-blue-900">ደረጀ መነምሻ</span>
-            </h2>
-          </div> */}
-        </div>
+      <div className=" py-20 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500">
+
+        <div className='bg-white rounded flex flex-col items-center justify-center py-14 mx-56'>
+        <h1 className="text-4xl font-bold text-center text-blue-800 mb-8 w-2/3">
+          የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽፈት ቤት
+        </h1>
+        <p className="text-lg text-gray-700 mb-4 md:mb-10 md:w-2/3 text-center bg-5">
+          እንኳን ወደ መንጃ ፍቃድ እና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ድህረ ገጽ በደህና መጡ። ዋና አላማችን አገልግሎቶቻችንን እና ስራዎችን በተመለከተ ከተጠቃሚዎች አስተያየቶችን እና አስተያየቶችን መቀበል ነው። የእርስዎን ግብአት ዋጋ እንሰጣለን እና ሀሳብዎን እንዲያካፍሉን እናበረታታዎታለን
+        </p>
+        <button
+          onClick={() => navigate("/comment")}
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300 md:ml-4"
+        >
+          አስተያየት ይስጡ
+        </button>
+       </div>
+      </div>
       <div className='sm:flex h-full items-center justify-center'>
         <div>
           {
@@ -103,9 +99,11 @@ const Home = () => {
           }
         </div>
         <div>
-          <UserSatisfaction isHome={true}/>
+          <UserSatisfaction isHome={true} />
         </div>
       </div>
+
+      <MissionVision/>
 
     </NavLayout>
   );

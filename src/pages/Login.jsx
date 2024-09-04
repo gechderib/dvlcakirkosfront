@@ -3,6 +3,7 @@ import logo from '../assets/logo.jpg'
 import { useNavigate } from 'react-router-dom'
 import NavLayout from '../components/NavLayout'
 import { useTranslation } from 'react-i18next'
+import FloatingButton from '../components/FloatingButton'
 
 const Login = () => {
   const [phone_number, setPhoneNumber] = useState('')
@@ -51,7 +52,8 @@ const Login = () => {
 
   return (
     <NavLayout>
-      <div className="flex min-h-full flex-col justify-center items-center px-6 py-12 lg:px-8">
+      <FloatingButton/>
+      <div className="flex  flex-col justify-center items-center px-6 pt-12 pb-72 lg:px-8 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {/* <img className="mx-auto" src={logo} alt="Company Logo"></img> */}
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">ወደ መለያዎ ይግቡ</h2>

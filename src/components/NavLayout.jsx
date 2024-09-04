@@ -1,6 +1,7 @@
 
 import React, {  useState } from 'react';
 import logo from '../assets/logo.jpg';
+import addis from '../assets/addis.png';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import { useTranslation } from 'react-i18next';
@@ -87,12 +88,12 @@ const NavLayout = ({ children }) => {
             {/* Navigation Links */}
             <div className="hidden sm:flex sm:items-center sm:justify-center flex-grow">
               <div className="flex space-x-4">
-                <a
+                {/* <a
                   onClick={() => window.open('https://aadvlca.com/')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
                   አሽከርካሪና ተሽከርካሪ ፍቃድ ቁጥጥር
-                </a>
+                </a> */}
                 <a
                   onClick={() => window.open('https://me-qr.com/mobile/pdf/22929263')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
@@ -168,7 +169,11 @@ const NavLayout = ({ children }) => {
                 )}
               </div>
             )}
+              <div className="flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
+              <img className="h-12 rounded-full w-auto" src={addis} alt="Your Company" />
+            </div>
           </div>
+          
         </div>
 
         {/* Mobile Menu */}
@@ -202,6 +207,7 @@ const NavLayout = ({ children }) => {
             )}
           </div>
         </div>
+        
       </nav>
       {children}
       <div className="flex items-end w-full bg-white">
