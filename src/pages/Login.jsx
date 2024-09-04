@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.jpg'
 import { useNavigate } from 'react-router-dom'
 import NavLayout from '../components/NavLayout'
+import { useTranslation } from 'react-i18next'
 
 const Login = () => {
   const [phone_number, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate()
 

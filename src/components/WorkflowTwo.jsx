@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import ServiceAvailabilityToggle from './ServiceAvailabilityToggle';
+import { useTranslation } from 'react-i18next';
 
 const DocumentTable = ({ fetchType, updateTo }) => {
  const [documents, setDocuments] = useState([]);
@@ -9,6 +10,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
  const [searchQuery, setSearchQuery] = useState('');
  const [currentPage, setCurrentPage] = useState(1);
  const [itemsPerPage] = useState(10);
+ const { t, i18n } = useTranslation();
 
  const [isServiceAvailable, setIsServiceAvailable] = useState(true)
 
@@ -67,6 +69,21 @@ const DocumentTable = ({ fetchType, updateTo }) => {
   }
  };
 
+ const updateDocumentStatusUser2 = async (id) => {
+  try {
+   const response = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${id}/`, { file_status: 'uncheck' }, {
+    headers: {
+     Authorization: `Token ${token}`,
+    },
+   });
+   fetchDocuments();
+   fetchDoneDocuments();
+   // showToastMessage(); 
+  } catch (error) {
+   console.error('Error updating document status:', error);
+  }
+ };
+
  const handleSearch = (e) => {
   setSearchQuery(e.target.value);
  };
@@ -88,7 +105,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
     <h1 className="text-2xl font-semibold mb-4">
      Document List ({documents.length})
     </h1>
-    {user.role === "admin" && <ServiceAvailabilityToggle/>}
+    {user.role === "admin" && <ServiceAvailabilityToggle />}
    </div>
 
    <input
@@ -108,7 +125,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
       <th className="py-2 px-4 border-b">Created By</th>
       <th className="py-2 px-4 border-b">Created At</th>
       <th className="py-2 px-4 border-b">Updated At</th>
-      {user.role != "admin" && <th className="py-2 px-4 border-b">Actions</th>}
+      <th className="py-2 px-4 border-b">Actions</th>
      </tr>
     </thead>
     <tbody>
@@ -121,15 +138,20 @@ const DocumentTable = ({ fetchType, updateTo }) => {
        </td>
        <td className="py-2 px-4 border-b">{new Date(document.created_at).toLocaleString()}</td>
        <td className="py-2 px-4 border-b">{new Date(document.updated_at).toLocaleString()}</td>
-       {user.role != "admin" && <td className="py-2 px-4 border-b">
+       <td className="flex py-2 border-b gap-3">
         <button
          onClick={() => updateDocumentStatus(document.id)}
          className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-         {fetchType === "start" ? "Check" : fetchType === "checked" ? "Scanned" : fetchType === "scanned" ? "Record" : "Recorded"}
-         {/* Check */}
+         {fetchType === "start" ? "Check" : fetchType === "checked" ? "Scanned" : fetchType === "scanned" ? "Record" : fetchType === "requested" ? "Approve" : fetchType === "approved" ? "File Out" : "Recorded"}
         </button>
-       </td>}
+        {user.role === "user2" && fetchType === "start" && <button
+         onClick={() => updateDocumentStatusUser2(document.id)}
+         className="bg-red-500 text-white px-4 py-2 rounded"
+        >
+         Unchek
+        </button>}
+       </td>
       </tr>
      ))}
     </tbody>

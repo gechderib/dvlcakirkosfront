@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const DocumentForm = () => {
   const [fileSerialNumber, setFileSerialNumber] = useState('');
@@ -18,12 +19,11 @@ const DocumentForm = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
-  const [selected, setSelected] = useState('newFile');
+  const [selected, setSelected] = useState('existingFile');
+  const { t, i18n } = useTranslation();
 
   // Handle checkbox change
-  const handleCheckboxChange = (event) => {
-    setServiceFor(event.target.value);
-  };
+
 
   // Fetch documents
   useEffect(() => {
@@ -97,7 +97,6 @@ const DocumentForm = () => {
       }
 
       if (file_data.data.exists && selected === "newFile") {
-        console.log("gebtual endatasm jflds jkdjf ")
         const fileId = file_data.data.file.id;
 
         const updateResponse = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${fileId}/`, {
@@ -109,6 +108,9 @@ const DocumentForm = () => {
             'Content-Type': 'application/json',
           },
         });
+        const filteredData = documents.filter(doc => doc.id != fileId)
+        setDocuments([...filteredData, updateResponse.data]);
+
         setFileSerialNumber('');
         setFileName('');
         setFileContent('');
@@ -124,13 +126,16 @@ const DocumentForm = () => {
       if (file_data.data.exists && selected === "existingFile") {
         const fileId = file_data.data.file.id;
         const updateResponse = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${fileId}/`, {
-          file_status: "requested",
+          file_status: file_data.data.file.file_status === "fileout"?"start":"requested",
         }, {
           headers: {
             Authorization: `Token ${token}`,
             'Content-Type': 'application/json',
           },
         });
+        // const filteredData = documents.filter(doc => doc.id != fileId)
+        // setDocuments(...filteredData);
+
         setFileSerialNumber('');
         setFileName('');
         setFileContent('');
@@ -150,7 +155,9 @@ const DocumentForm = () => {
             'Content-Type': 'application/json',
           },
         });
-        setDocuments([...documents, response.data]);
+        // const filteredData = documents.filter(doc => doc.id != fileId)
+        // setDocuments(...filteredData);
+
         setFileSerialNumber('');
         setFileName('');
         setFileContent('');
@@ -160,7 +167,7 @@ const DocumentForm = () => {
         setOwnerName('');
         setDriverLicenseNumber('');
         setLicenseType('');
-        setSuccess('File created successfully!');
+        setSuccess('File successfully requested');
       }
 
     } catch (error) {
@@ -185,13 +192,12 @@ const DocumentForm = () => {
 
         <label className="block text-gray-700 mb-3">Document Type</label>
         <ul class="mx-auto grid max-w-full w-full grid-cols-2 gap-x-5 px-8 mb-5">
-          <li class="" onClick={() => { setSelected("newFile") }}>
-            <label class={`flex justify-center cursor-pointer rounded-full border py-2 px-4 focus:outline-none transition-all duration-500 ease-in-out ${selected == "newFile" ? "border-blue-500 font-bold bg-blue-600 text-white" : "border-gray-300 bg-white"}  `}>New File</label>
-          </li>
-
-          <li class="" onClick={() => { setSelected("existingFile") }}>
+        <li class="" onClick={() => { setSelected("existingFile") }}>
             <label class={`flex justify-center cursor-pointer rounded-full border py-2 px-4 focus:outline-none transition-all duration-500 ease-in-out ${selected == "existingFile" ? "border-blue-500 font-bold bg-blue-600 text-white" : "border-gray-300 bg-white"}  `}>Existing File</label>
           </li>
+          <li class="" onClick={() => { setSelected("newFile") }}>
+            <label class={`flex justify-center cursor-pointer rounded-full border py-2 px-4 focus:outline-none transition-all duration-500 ease-in-out ${selected == "newFile" ? "border-blue-500 font-bold bg-blue-600 text-white" : "border-gray-300 bg-white"}  `}>New File</label>
+          </li>        
         </ul>
 
         <label className="block text-gray-700 mb-3">Service For</label>
@@ -311,7 +317,7 @@ const DocumentForm = () => {
               <option value="level4">License Four</option>
             </select>
           </div>}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-gray-700">File Content</label>
             <textarea
               value={fileContent}
@@ -319,7 +325,7 @@ const DocumentForm = () => {
               className="w-full border border-gray-300 rounded p-2"
 
             ></textarea>
-          </div>
+          </div> */}
           <button
             type="submit"
             className={`w-full p-2 bg-blue-500 text-white rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}

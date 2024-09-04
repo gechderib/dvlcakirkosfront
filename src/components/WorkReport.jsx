@@ -3,6 +3,7 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReportCards from './ReportCards';
+import { useTranslation } from 'react-i18next';
 
 const ReportComponent = () => {
   const [startDate, setStartDate] = useState(null);
@@ -13,7 +14,7 @@ const ReportComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchCreatedBy, setSearchCreatedBy] = useState(''); // New state for searching by Created By
   const [itemsPerPage] = useState(10); // Number of items per page
-  const statuses = ['start', 'checked', 'scanned', 'recorded'];
+  const statuses = ['start', 'checked', 'scanned', 'recorded','requested', 'approved','fileout'];
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -69,6 +70,7 @@ const ReportComponent = () => {
 
   // Pagination controls
   const totalPages = Math.ceil(filteredReports.length / itemsPerPage);
+  const { t, i18n } = useTranslation();
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

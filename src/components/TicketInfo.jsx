@@ -1,8 +1,10 @@
 import React from 'react';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const TicketInfo = ({isLoading, error,currentTicket, awaitingTickets, totalTickets }) => {
   const currentDate = format(new Date(), 'PPPP'); // Format the date using date-fns
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="p-6 bg-white">

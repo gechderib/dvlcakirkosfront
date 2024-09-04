@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const CommentsTable = ({isUser = false}) => {
 
@@ -8,6 +9,8 @@ const CommentsTable = ({isUser = false}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = localStorage.getItem('authToken'); 
+  const { t, i18n } = useTranslation();
+
   useEffect(() => {
 
     const fetchComments = async () => {

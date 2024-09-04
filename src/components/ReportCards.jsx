@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const ReportCards = () => {
     const [reportData, setReportData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const fetchReportData = async () => {

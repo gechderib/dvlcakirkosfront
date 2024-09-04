@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import RegisterModal from './Register';
+import { useTranslation } from 'react-i18next';
 
 const UsersTable = () => {
 
@@ -9,6 +10,7 @@ const UsersTable = () => {
   const [error, setError] = useState(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

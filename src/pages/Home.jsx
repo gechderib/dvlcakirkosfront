@@ -4,11 +4,13 @@ import NavLayout from '../components/NavLayout';
 import TicketInfo from '../components/TicketInfo';
 import axios from 'axios';
 import UserSatisfaction from '../components/UserSatisfaction';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const navigate = useNavigate();
   const [currentTicketNumber, setCurrentTicketNumber] = useState(null);
   const [lastTicketNumber, setLastTicketNumber] = useState(null);
+  const { t, i18n } = useTranslation();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

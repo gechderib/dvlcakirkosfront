@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const ServiceAvailabilityToggle = () => {
   const [isAvailable, setIsAvailable] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     // Fetch the current availability status when the component mounts

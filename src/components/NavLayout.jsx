@@ -1,38 +1,78 @@
 
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import logo from '../assets/logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const NavLayout = ({ children }) => {
   const navigate = useNavigate();
   // const [user, setUser] = useState({});
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
-  // useEffect(() => {
-  //   const fetchUserProfile = async () => {
-  //     try {
-  //       const token = localStorage.getItem('authToken'); // Retrieve token from local storage
-  //       if (!token) {
-  //         throw new Error('No authentication token found.');
-  //       }
-  //       const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/profile', 
-  // {
-  //         headers: {
-  //           Authorization: `Token ${token}`,
-  //         },
-  //       }
-  // );
-  //       setUser(response.data);
-  //       localStorage.setItem('user', JSON.stringify(response.data));
-  //     } catch (error) {
-  //       console.error('There was an error fetching the documents!', error);
-  //     }
-  //   };
+  const { t, i18n } = useTranslation();
 
-  //   fetchUserProfile();
-  // }, []);
+
+  const LanguageSwitcher = () => {
+    const [selectedLanguage, setSelectedLanguage] = useState('en');
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const languages = ['en', 'am'];
+  
+    const toggleDropdown = () => setIsOpen(!isOpen);
+
+    const handleSelectLanguage = (language) => {
+      i18n.changeLanguage(language)
+      setSelectedLanguage(language);
+      setIsOpen(false);
+    };
+  
+    return (
+      <div className="relative inline-block text-left">
+        <div>
+          <button
+            type="button"
+            onClick={toggleDropdown}
+            className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            {selectedLanguage === "en"?"English":"አማርኛ"}
+            <svg
+              className="-mr-1 ml-2 h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+  
+        {isOpen && (
+          <div className="absolute z-20 right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="py-1">
+              {languages.map((language) => (
+                <a
+                  key={language}
+                  href="#"
+                  onClick={() => handleSelectLanguage(language)}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  {language === 'en' ?"English":"አማርኛ"}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -73,6 +113,24 @@ const NavLayout = ({ children }) => {
                 >
                   አስተያየት
                 </a>
+                <a
+                  onClick={() => navigate('/news')}
+                  className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
+                >
+                  ዜና
+                </a>
+                <a
+                  onClick={() => navigate('/service')}
+                  className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
+                >
+                  አገልግሎቶች
+                </a>
+                <a
+                  onClick={() => navigate('/help')}
+                  className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
+                >
+                  መረጃ
+                </a>
                 {!localStorage.getItem('authToken') &&  (
                   <a
                     onClick={() => navigate('/login')}
@@ -81,9 +139,10 @@ const NavLayout = ({ children }) => {
                     ግባ
                   </a>
                 )}
+                <LanguageSwitcher/>
               </div>
             </div>
-
+            
             {/* User Info and Logout */}
             {localStorage.getItem('authToken') && (
               <div className="relative flex items-center space-x-4">
@@ -104,6 +163,7 @@ const NavLayout = ({ children }) => {
                     >
                       ውጣ
                     </a>
+                    
                   </div>
                 )}
               </div>

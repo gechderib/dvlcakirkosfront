@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TicketInfo from '../components/TicketInfo';
 import NavLayout from '../components/NavLayout';
+import { useTranslation } from 'react-i18next';
 
 const Comment = () => {
  const [selectedUser, setSelectedUser] = useState({
@@ -26,6 +27,7 @@ const Comment = () => {
  const [error, setError] = useState(null);
 
  const [isCommenting, setIsCommenting] = useState(false)
+ const { t, i18n } = useTranslation();
 
  const satisfactionLevels = [
   { value: 1, emoji: '😡', description: 'በጣም አልረካም' },

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const RegisterModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
+
   return (
    <footer class="w-full text-gray-700 bg-gray-100 body-font mt-44">
    <div

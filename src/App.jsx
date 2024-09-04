@@ -4,6 +4,9 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import Comment from './pages/Comment'
+import NewsPage from './pages/NewsPage'
+import ServicePage from './pages/ServicePage'
+import RulesAndHelp from './pages/RulesAndHelp'
 
 function App() {
 
@@ -13,6 +16,10 @@ function App() {
       <Route exact path="/comment" element={<Comment/>} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/dashboard" element={<Dashboard />} />
+      <Route exact path="/news" element={<NewsPage />} />
+      <Route exact path="/service" element={<ServicePage />} />
+      <Route exact path="/help" element={<RulesAndHelp />} />
+
     </Routes>
   </BrowserRouter>
   )

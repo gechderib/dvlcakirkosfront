@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Ticket = () => {
   const [currentTicketNumber, setCurrentTicketNumber] = useState();
   const [lastTicketNumber, setLastTicketNumber] = useState();
   const [responseMessage, setResponseMessage] = useState('');
   const [previousTickets, setPreviousTickets] = useState([]);
+  const { t, i18n } = useTranslation();
 
   // Fetch previous tickets excluding the current one
   useEffect(() => {

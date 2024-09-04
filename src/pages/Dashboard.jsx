@@ -10,10 +10,13 @@ import DocumentTable from '../components/WorkflowTwo'
 import ReportComponent from '../components/WorkReport'
 import UserSatisfaction from '../components/UserSatisfaction'
 import Login from './Login'
+import YourWork from '../components/YourWork'
+import { useTranslation } from 'react-i18next'
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState('user');
+  const [selectedTab, setSelectedTab] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const user = JSON.parse(localStorage.getItem('user'))
   console.log(user);
@@ -92,7 +95,7 @@ const Dashboard = () => {
               ጠቅላላ አስተያየቶች
             </div>}
 
-            <div
+            {(user.role === "user1" || user.role === "admin") && <div
               onClick={() => { setSelectedTab('ticket'); setIsSidebarOpen(false); }}
               role='button'
               className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'ticket' ? 'bg-blue-50 text-blue-900' : ''
@@ -104,7 +107,7 @@ const Dashboard = () => {
                 </svg>
               </div>
               ቲኬቶች
-            </div>
+            </div>}
 
             <div
               onClick={() => { setSelectedTab('workflow'); setIsSidebarOpen(false); }}
@@ -119,6 +122,20 @@ const Dashboard = () => {
               </div>
               የስራ ፍሰት
             </div>
+
+            {user.role === "user4" && <div
+              onClick={() => { setSelectedTab('approvedfile'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'approvedfile' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="m600-200-56-57 143-143H300q-75 0-127.5-52.5T120-580q0-75 52.5-127.5T300-760h20v80h-20q-42 0-71 29t-29 71q0 42 29 71t71 29h387L544-624l56-56 240 240-240 240Z" />
+                </svg>
+              </div>
+              ተቀባይነት ያለው ፋይል
+            </div>}
             
             {user.role === "admin" && <div
               onClick={() => { setSelectedTab('report'); setIsSidebarOpen(false); }}
@@ -161,6 +178,20 @@ const Dashboard = () => {
               የተሰጦት አስተያየት
             </div>}
 
+            {(user.role === "user1") && <div
+              onClick={() => { setSelectedTab('yourwork'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'yourwork' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z" />
+                </svg>
+              </div>
+              የእርስዎ ስራዎች
+            </div>}
+
             <div onClick={()=>{navigate("/")}} role="button" className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
               <div className="grid place-items-center mr-4" onClick={() => { navigate("/login") }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-5 w-5">
@@ -172,21 +203,24 @@ const Dashboard = () => {
 
         </div>
         <div className="flex-grow p-10">
-          {selectedTab === "user" && <UsersTable />}
-          {selectedTab === "comments" && <CommentsTable />}
-          {selectedTab === "gcomments" && <GeneralCommentTable />}
-          {selectedTab === "ticket" && <Ticket />}
+          {selectedTab === "user"&& user.role === "admin" && <UsersTable />}
+          {selectedTab === "comments" && user.role === "admin" && <CommentsTable />}
+          {selectedTab === "gcomments" && user.role === "admin" && <GeneralCommentTable />}
+          {selectedTab === "ticket" && (user.role === "user1" || user.role === "admin") && <Ticket />}
 
           {selectedTab === "workflow" && user.role === "user1" && <DocumentManager />}
           {selectedTab === "workflow" && user.role === "user2" && <DocumentTable fetchType="start" updateTo="checked" />}
           {selectedTab === "workflow" && user.role === "user3" && <DocumentTable fetchType="checked" updateTo="scanned" />}
           {selectedTab === "workflow" && user.role === "user4" && <DocumentTable fetchType="scanned" updateTo="recorded" />}
+          {selectedTab === "approvedfile" && user.role === "user4" && <DocumentTable fetchType="approved" updateTo="fileout" />}
 
-          {selectedTab === "workflow" && user.role === "admin" && <DocumentTable fetchType="recorded" updateTo="recorded" />}
-          {selectedTab === "report" && user.role === "admin" && <ReportComponent />}
+
+          {selectedTab === "workflow" && user.role === "admin" && <DocumentTable fetchType="requested" updateTo="approved" />}
           {selectedTab === "topthree" && user.role === "admin" && <UserSatisfaction />}
-          {selectedTab === "yourcomment" && (user.role === "user1" || user.role === "user2" || user.role === "user3" || user.role === "user4") && <CommentsTable isUser={true} />}
+          {selectedTab === "report" && user.role === "admin" && <ReportComponent />}
           
+          {selectedTab === "yourcomment" && (user.role === "user1" || user.role === "user2" || user.role === "user3" || user.role === "user4") && <CommentsTable isUser={true} />}
+          {selectedTab === "yourwork" && user.role === "user1" && <YourWork/>}
         </div>
 
       </div>

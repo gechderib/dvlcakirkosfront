@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const UserSatisfaction = ({ isHome = false }) => {
   const [data, setData] = useState({ weekly_user_satisfaction: [], overall_user_satisfaction: [] });
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     axios.get("https://driver-and-vehicle-license.onrender.com/comments/top_three/")

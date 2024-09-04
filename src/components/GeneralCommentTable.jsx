@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const GeneralCommentTable = () => {
+  const { t, i18n } = useTranslation();
 
   const [comments, setcomments] = useState([]);
   const [loading, setLoading] = useState(true);
