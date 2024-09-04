@@ -5,6 +5,7 @@ import ServiceAvailabilityToggle from './ServiceAvailabilityToggle';
 
 const DocumentTable = ({ fetchType, updateTo }) => {
  const [documents, setDocuments] = useState([]);
+ const [doneDocuments, setDoneDocuments] = useState([]);
  const [searchQuery, setSearchQuery] = useState('');
  const [currentPage, setCurrentPage] = useState(1);
  const [itemsPerPage] = useState(10);
@@ -38,6 +39,19 @@ const DocumentTable = ({ fetchType, updateTo }) => {
   }
  };
 
+ const fetchDoneDocuments = async () => {
+  try {
+   const response = await axios.get(`https://driver-and-vehicle-license.onrender.com/document/all/?file_status=${updateTo}`, {
+    headers: {
+     Authorization: `Token ${token}`,
+    },
+   });
+   setDoneDocuments(response.data);
+  } catch (error) {
+   console.error('Error fetching documents:', error);
+  }
+ };
+
  const updateDocumentStatus = async (id) => {
   try {
    const response = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${id}/`, { file_status: `${updateTo}` }, {
@@ -46,6 +60,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
     },
    });
    fetchDocuments();
+   fetchDoneDocuments();
    // showToastMessage(); 
   } catch (error) {
    console.error('Error updating document status:', error);
