@@ -178,6 +178,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
               <option value="user2">ኦዲተር</option>
               <option value="user3">ማረጃ ሰብሳቢ</option>
               <option value="user4">መዝገብ ቤት</option>
+              <option value="staff">ሰራተኞች</option>
             </select>
           </div>
           <div className="mb-4">

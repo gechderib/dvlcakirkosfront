@@ -117,13 +117,14 @@ const Comment = () => {
  return (
   <NavLayout>
    {/* <FloatingButton/> */}
+   
    <FloatingButton isOther={true}/>
    <div className='sm:flex gap-10 mb-5 mt-10 md:px-20'>
     <div className='sm:w-full p-6 bg-white rounded-md shadow-md'>
      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-10">
       <ul className="flex flex-wrap -mb-px">
        <li className="me-2 cursor-pointer" onClick={() => setCommentType("general")}>
-        <a className={`inline-block p-4 ${commentType === 'general' ? "text-blue-600 border-b-2 border-blue-600" : ""} rounded-t-lg active`}>ጠቅላላ አስተያየት</a>
+        <a className={`inline-block p-4 ${commentType === 'general' ? "text-blue-600 border-b-2 border-blue-600" : ""} rounded-t-lg active`}>{t('generalcomment')}</a>
        </li>
        <li className="me-2 cursor-pointer" onClick={() => setCommentType("touser")}>
         <a className={`inline-block p-4 ${commentType === 'touser' ? "text-blue-600 border-b-2 border-blue-600" : ""} rounded-t-lg active`}>አገልግሎት ለሰጦት ሰው አስተያየት ይስጡ</a>
