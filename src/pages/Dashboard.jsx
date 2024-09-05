@@ -13,6 +13,7 @@ import Login from './Login'
 import YourWork from '../components/YourWork'
 import { useTranslation } from 'react-i18next'
 import FloatingButton from '../components/FloatingButton'
+import AddNews from '../components/news/AddNews'
 const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState('');
@@ -138,6 +139,20 @@ const Dashboard = () => {
               </div>
               ተቀባይነት ያለው ፋይል
             </div>}
+
+            {user.role === "admin" && <div
+              onClick={() => { setSelectedTab('news'); setIsSidebarOpen(false); }}
+              role='button'
+              className={`flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none ${selectedTab === 'news' ? 'bg-blue-50 text-blue-900' : ''
+                }`}
+            >
+              <div className='grid place-items-center mr-4'>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                  <path d="m600-200-56-57 143-143H300q-75 0-127.5-52.5T120-580q0-75 52.5-127.5T300-760h20v80h-20q-42 0-71 29t-29 71q0 42 29 71t71 29h387L544-624l56-56 240 240-240 240Z" />
+                </svg>
+              </div>
+              ዜና ጨምር
+            </div>}
             
             {user.role === "admin" && <div
               onClick={() => { setSelectedTab('report'); setIsSidebarOpen(false); }}
@@ -220,6 +235,7 @@ const Dashboard = () => {
           {selectedTab === "workflow" && user.role === "admin" && <DocumentTable fetchType="requested" updateTo="approved" />}
           {selectedTab === "topthree" && user.role === "admin" && <UserSatisfaction />}
           {selectedTab === "report" && user.role === "admin" && <ReportComponent />}
+          {selectedTab === "news" && user.role === "admin" && <AddNews />}
           
           {selectedTab === "yourcomment" && (user.role === "user1" || user.role === "user2" || user.role === "user3" || user.role === "user4") && <CommentsTable isUser={true} />}
           {selectedTab === "yourwork" && user.role === "user1" && <YourWork/>}
