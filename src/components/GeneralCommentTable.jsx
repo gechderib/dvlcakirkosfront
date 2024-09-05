@@ -13,7 +13,7 @@ const GeneralCommentTable = () => {
 
     const fetchcomments = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/general/all/'); // replace with your API endpoint
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/comments/general/all/'); // replace with your API endpoint
         setcomments(response.data);
         setLoading(false);
       } catch (error) {

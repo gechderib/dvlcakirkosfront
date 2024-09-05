@@ -58,7 +58,7 @@ const Comment = () => {
   };
 
   try {
-   const url = commentType === 'touser' ? 'https://driver-and-vehicle-license.onrender.com/comments/create/' : "https://driver-and-vehicle-license.onrender.com/comments/general/create/";
+   const url = commentType === 'touser' ? 'https://dvlcadigitalkirkos.onrender.com/comments/create/' : "https://dvlcadigitalkirkos.onrender.com/comments/general/create/";
    const response = await axios.post(url, data);
    if (response.status === 201) {
     setIsCommenting(false);
@@ -75,7 +75,7 @@ const Comment = () => {
  };
 
  useEffect(() => {
-  const eventSource = new EventSource('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/');
+  const eventSource = new EventSource('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/');
 
   eventSource.onmessage = function (e) {
    const data = JSON.parse(e.data);
@@ -85,7 +85,7 @@ const Comment = () => {
 
   const fetchStaffUsers = async () => {
    try {
-    const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/staff-users/');
+    const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/users/staff-users/');
     setStaffUsers(response.data);
     setLoading(false);
    } catch (error) {
@@ -96,7 +96,7 @@ const Comment = () => {
 
   const fetchTickets = async () => {
    try {
-    const response = await axios.get('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/all/');
+    const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/all/');
     setCurrentTicketNumber(response.data[response.data.length - 1].current_ticket_number);
     setLastTicketNumber(response.data[response.data.length - 1].last_ticket_number);
     setLoading(false);
@@ -117,6 +117,7 @@ const Comment = () => {
  return (
   <NavLayout>
    {/* <FloatingButton/> */}
+   <FloatingButton isOther={true}/>
    <div className='sm:flex gap-10 mb-5 mt-10 md:px-20'>
     <div className='sm:w-full p-6 bg-white rounded-md shadow-md'>
      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 mb-10">

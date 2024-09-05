@@ -10,7 +10,7 @@ const OfficeAndObligation = () => {
   useEffect(() => {
     const fetchObligations = async () => {
       try {
-        const obligationsResponse = await axios.get('https://driver-and-vehicle-license.onrender.com/news/obligations');
+        const obligationsResponse = await axios.get('https://dvlcadigitalkirkos.onrender.com/news/obligations');
         setObligations(obligationsResponse.data);
       } catch (err) {
         setError('Failed to fetch obligations');
@@ -19,7 +19,7 @@ const OfficeAndObligation = () => {
 
     const fetchOffices = async () => {
       try {
-        const officesResponse = await axios.get('https://driver-and-vehicle-license.onrender.com/news/office');
+        const officesResponse = await axios.get('https://dvlcadigitalkirkos.onrender.com/news/office');
         setOffices(officesResponse.data);
       } catch (err) {
         setError('Failed to fetch offices');

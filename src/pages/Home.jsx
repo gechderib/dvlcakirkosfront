@@ -20,7 +20,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    // const eventSource = new EventSource('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/');
+    // const eventSource = new EventSource('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/');
 
     // eventSource.onmessage = function (e) {
     //   const data = JSON.parse(e.data);
@@ -29,7 +29,7 @@ const Home = () => {
     // };
     const fetchAvailabilityStatus = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/service-availability/');
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/service-availability/');
         setIsAvailable(response.data.is_available);
         setLoading(false);
       } catch (err) {
@@ -40,7 +40,7 @@ const Home = () => {
 
     const fetchTickets = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/all/');
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/all/');
         setCurrentTicketNumber(response.data[response.data.length - 1].current_ticket_number);
         setLastTicketNumber(response.data[response.data.length - 1].last_ticket_number);
         setLoading(false);
@@ -66,10 +66,10 @@ const Home = () => {
 
         <div className='bg-white rounded flex flex-col items-center justify-center py-14 mx-56'>
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-8 w-2/3">
-          የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽፈት ቤት
+          የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽፈት ቤት
         </h1>
         <p className="text-lg text-gray-700 mb-4 md:mb-10 md:w-2/3 text-center bg-5">
-          እንኳን ወደ መንጃ ፍቃድ እና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ድህረ ገጽ በደህና መጡ። ዋና አላማችን አገልግሎቶቻችንን እና ስራዎችን በተመለከተ ከተጠቃሚዎች አስተያየቶችን እና አስተያየቶችን መቀበል ነው። የእርስዎን ግብአት ዋጋ እንሰጣለን እና ሀሳብዎን እንዲያካፍሉን እናበረታታዎታለን
+          እንኳን ወደ መንጃ ፍቃድ እና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽ/ቤት ድህረ ገጽ በደህና መጡ። ዋና አላማችን አገልግሎቶቻችንን እና ስራዎችን በተመለከተ ከተጠቃሚዎች አስተያየቶችን እና አስተያየቶችን መቀበል ነው። የእርስዎን ግብአት ዋጋ እንሰጣለን እና ሀሳብዎን እንዲያካፍሉን እናበረታታዎታለን
         </p>
         <button
           onClick={() => navigate("/comment")}
@@ -90,7 +90,7 @@ const Home = () => {
               totalTickets={lastTicketNumber}
             /> : <div className='text-lg px-2 flex flex-col gap-2 mt-5'>
               <p className='font-bold text-3xl underline'>አገልግሎት የለም </p>
-              <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥር ባለስልጣን አራዳ ቅርንጫፍ ጽ/ቤት ስለተጠቀማቹ እናመሰግናለን </p>
+              <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽ/ቤት ስለተጠቀማቹ እናመሰግናለን </p>
               <p>የምንሠራው ለተወሰኑ ቀናት ብቻ ስለሆነ አገልግሎታችን በአሁኑ ጊዜ የማይገኝ መሆኑን ለማሳወቅ እንወዳለን። </p>
               <p>እባክዎን የአገልግሎት መርሃ ግብራችንን ይመልከቱ ወይም በሚቀጥለው የአገልግሎት ቀን ላይ ለበለጠ መረጃ ያግኙን። </p>
               <p>የእርስዎን ግንዛቤ እናመሰግናለን እናም በቅርቡ እርስዎን ለማገልገል በጉጉት እንጠባበቃለን።</p>

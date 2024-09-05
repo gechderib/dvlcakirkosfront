@@ -11,7 +11,7 @@ const Service = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/services/all/');
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/services/all/');
         const services = response.data;
         
         // Split services based on their type

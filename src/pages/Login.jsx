@@ -20,7 +20,7 @@ const Login = () => {
     setError('')
 
     try {
-      const response = await fetch('https://driver-and-vehicle-license.onrender.com/users/login/', {
+      const response = await fetch('https://dvlcadigitalkirkos.onrender.com/users/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

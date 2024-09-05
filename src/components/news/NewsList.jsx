@@ -9,7 +9,7 @@ const NewsList = () => {
  useEffect(() => {
 
   const fetchNews = async () => {
-   const response = await axios.get('https://driver-and-vehicle-license.onrender.com/news/all/');
+   const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/news/all/');
    const data = await response.data;
    console.log(data);
    setNews(data);

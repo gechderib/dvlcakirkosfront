@@ -15,7 +15,7 @@ const ServiceAvailabilityToggle = () => {
 
   const fetchAvailabilityStatus = async () => {
     try {
-      const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/service-availability/');
+      const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/service-availability/');
       setIsAvailable(response.data.is_available);
       setLoading(false);
     } catch (err) {
@@ -27,7 +27,7 @@ const ServiceAvailabilityToggle = () => {
   const toggleAvailability = async () => {
     try {
       const newStatus = !isAvailable; // Toggle the current status
-      await axios.put('https://driver-and-vehicle-license.onrender.com/document/service-availability/', {
+      await axios.put('https://dvlcadigitalkirkos.onrender.com/document/service-availability/', {
         is_available: newStatus,
       });
       setIsAvailable(newStatus); // Update state to reflect the new status

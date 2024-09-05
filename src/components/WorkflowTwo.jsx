@@ -30,7 +30,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
 
  const fetchDocuments = async () => {
   try {
-   const response = await axios.get(`https://driver-and-vehicle-license.onrender.com/document/all/?file_status=${fetchType}`, {
+   const response = await axios.get(`https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=${fetchType}`, {
     headers: {
      Authorization: `Token ${token}`,
     },
@@ -43,7 +43,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
 
  const fetchDoneDocuments = async () => {
   try {
-   const response = await axios.get(`https://driver-and-vehicle-license.onrender.com/document/all/?file_status=${updateTo}`, {
+   const response = await axios.get(`https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=${updateTo}`, {
     headers: {
      Authorization: `Token ${token}`,
     },
@@ -56,7 +56,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
 
  const updateDocumentStatus = async (id) => {
   try {
-   const response = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${id}/`, { file_status: `${updateTo}` }, {
+   const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: `${updateTo}` }, {
     headers: {
      Authorization: `Token ${token}`,
     },
@@ -71,7 +71,7 @@ const DocumentTable = ({ fetchType, updateTo }) => {
 
  const updateDocumentStatusUser2 = async (id) => {
   try {
-   const response = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${id}/`, { file_status: 'uncheck' }, {
+   const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: 'uncheck' }, {
     headers: {
      Authorization: `Token ${token}`,
     },

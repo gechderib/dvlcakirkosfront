@@ -12,7 +12,7 @@ const ReportCards = () => {
         const fetchReportData = async () => {
             const token = localStorage.getItem('authToken');
             try {
-                const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/report/status/', {
+                const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/report/status/', {
                     headers: {
                         'Authorization': `Token ${token}`
                     }

@@ -24,7 +24,7 @@ const UsersTable = () => {
 
     const fetchStaffUsers = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/users/staff-users/'); // replace with your API endpoint
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/users/staff-users/'); // replace with your API endpoint
         setStaffUsers(response.data);
         setLoading(false);
       } catch (error) {

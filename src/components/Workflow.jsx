@@ -33,7 +33,7 @@ const DocumentForm = () => {
         if (!token) {
           throw new Error('No authentication token found.');
         }
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/document/all/?file_status=start', {
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=start', {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -74,9 +74,9 @@ const DocumentForm = () => {
       if (!token) {
         throw new Error('No authentication token found.');
       }
-      const file_data = await axios.get(`https://driver-and-vehicle-license.onrender.com/document/fileprocess/${fileSerialNumber}/`);
+      const file_data = await axios.get(`https://dvlcadigitalkirkos.onrender.com/document/fileprocess/${fileSerialNumber}/`);
       if (!file_data.data.exists && selected === "newFile") {
-        const response = await axios.post('https://driver-and-vehicle-license.onrender.com/document/create/', newFile, {
+        const response = await axios.post('https://dvlcadigitalkirkos.onrender.com/document/create/', newFile, {
           headers: {
             Authorization: `Token ${token}`,
             'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const DocumentForm = () => {
       if (file_data.data.exists && selected === "newFile") {
         const fileId = file_data.data.file.id;
 
-        const updateResponse = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${fileId}/`, {
+        const updateResponse = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${fileId}/`, {
           ...newFile,
           file_status: "start",
         }, {
@@ -125,7 +125,7 @@ const DocumentForm = () => {
 
       if (file_data.data.exists && selected === "existingFile") {
         const fileId = file_data.data.file.id;
-        const updateResponse = await axios.patch(`https://driver-and-vehicle-license.onrender.com/document/update/${fileId}/`, {
+        const updateResponse = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${fileId}/`, {
           file_status: file_data.data.file.file_status === "fileout"?"start":"requested",
         }, {
           headers: {
@@ -149,7 +149,7 @@ const DocumentForm = () => {
       }
 
       if (!file_data.data.exists && selected === "existingFile") {
-        const response = await axios.post('https://driver-and-vehicle-license.onrender.com/document/create/', { ...newFile, file_status: "requested" }, {
+        const response = await axios.post('https://dvlcadigitalkirkos.onrender.com/document/create/', { ...newFile, file_status: "requested" }, {
           headers: {
             Authorization: `Token ${token}`,
             'Content-Type': 'application/json',

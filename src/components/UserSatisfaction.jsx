@@ -7,7 +7,7 @@ const UserSatisfaction = ({ isHome = false }) => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    axios.get("https://driver-and-vehicle-license.onrender.com/comments/top_three/")
+    axios.get("https://dvlcadigitalkirkos.onrender.com/comments/top_three/")
       .then(response => {
         setData(response.data);
       })

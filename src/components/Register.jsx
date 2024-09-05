@@ -50,7 +50,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(
-        'https://driver-and-vehicle-license.onrender.com/users/register/',
+        'https://dvlcadigitalkirkos.onrender.com/users/register/',
         form,
         {
           headers: {

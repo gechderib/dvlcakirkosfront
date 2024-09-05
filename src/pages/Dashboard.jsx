@@ -12,6 +12,7 @@ import UserSatisfaction from '../components/UserSatisfaction'
 import Login from './Login'
 import YourWork from '../components/YourWork'
 import { useTranslation } from 'react-i18next'
+import FloatingButton from '../components/FloatingButton'
 const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState('');
@@ -31,6 +32,7 @@ const Dashboard = () => {
   }
   return (
     <NavLayout>
+      <FloatingButton isOther={true}/>
       <div className='flex flex-col sm:flex-row h-screen'>
         {/* Hamburger Menu for Mobile */}
         <div className='sm:hidden p-4'>

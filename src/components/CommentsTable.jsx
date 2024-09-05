@@ -15,7 +15,7 @@ const CommentsTable = ({isUser = false}) => {
 
     const fetchComments = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/all/');
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/comments/all/');
         setComments(response.data);
         setLoading(false);
       } catch (error) {
@@ -26,7 +26,7 @@ const CommentsTable = ({isUser = false}) => {
 
     const fetchUserComments = async () => {
       try {
-        const response = await axios.get('https://driver-and-vehicle-license.onrender.com/comments/user/', {
+        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/comments/user/', {
           headers: {
             Authorization: `Token ${token}`,
           },

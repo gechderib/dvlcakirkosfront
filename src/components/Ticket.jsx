@@ -12,7 +12,7 @@ const Ticket = () => {
   useEffect(() => {
     const fetchPreviousTickets = async () => {
       try {
-        const response = await fetch('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/all');
+        const response = await fetch('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/all');
         if (response.ok) {
           const tickets = await response.json();
           // Filter out the current ticket
@@ -36,7 +36,7 @@ const Ticket = () => {
     };
 
     try {
-      const response = await fetch('https://driver-and-vehicle-license.onrender.com/news/ticket-announcement-stream/create', {
+      const response = await fetch('https://dvlcadigitalkirkos.onrender.com/news/ticket-announcement-stream/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
