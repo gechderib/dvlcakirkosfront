@@ -212,7 +212,7 @@ const DocumentForm = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">Plate Number</label>
+            <label className="block text-gray-700">{serviceFor === "driver"?"Driver License Number":"Plate Number"}</label>
             <input
               type="text"
               value={fileSerialNumber}
@@ -245,7 +245,7 @@ const DocumentForm = () => {
             />
           </div>}
           { serviceFor === "driver" && <div className="mb-4">
-            <label className="block text-gray-700">Driver License Number</label>
+            <label className="block text-gray-700">Driver Name</label>
             <input
               type="text"
               value={driverLicenseNumber}
