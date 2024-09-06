@@ -69,7 +69,7 @@ const UsersTable = () => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className='flex justify-end mb-5'>
-        <div onClick={()=>{handleOpenModal()}} className='bg-blue-500 cursor-pointer text-white w-40 px-3 py-2 text-center'>ሰራተኞችን ይጨምሩ
+        <div onClick={()=>{handleOpenModal()}} className='bg-blue-500 cursor-pointer text-white w-40 px-3 py-2 text-center'>{t('acount')}
         </div>
         <RegisterModal isOpen={isModalOpen} onClose={()=>{handleCloseModal()}}/>
       </div>
@@ -78,16 +78,16 @@ const UsersTable = () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-              ሙሉ ስም
+              {t('name')}
               </th>
               <th scope="col" className="px-6 py-3">
-              ስልክ ቁጥር
+             {t('phon')}
               </th>
               <th scope="col" className="px-6 py-3">
-              የስራ ሃላፊነት
+              {t('position')}
               </th>
               <th scope="col" className="px-6 py-3">
-              ድርጊት
+              {t('action')}
               </th>
             </tr>
           </thead>

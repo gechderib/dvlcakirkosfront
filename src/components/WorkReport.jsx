@@ -82,7 +82,7 @@ const ReportComponent = () => {
       <div className="container mx-auto p-4">
         <div className="flex flex-col sm:flex-row items-center mb-4">
           <div className="mb-4 sm:mb-0 sm:mr-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Start Date</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">የመጀመሪአ ቀን</label>
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
@@ -92,7 +92,7 @@ const ReportComponent = () => {
             />
           </div>
           <div className="mb-4 sm:mb-0 sm:mr-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">End Date</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">የመጨረሻ ቀን</label>
             <DatePicker
               selected={endDate}
               onChange={date => setEndDate(date)}
@@ -102,7 +102,7 @@ const ReportComponent = () => {
             />
           </div>
           <div className="mb-4 sm:mb-0 sm:mr-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Status</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">የፋይል ሁኔታ</label>
             <select
               value={status}
               onChange={e => setStatus(e.target.value)}
@@ -117,7 +117,7 @@ const ReportComponent = () => {
             </select>
           </div>
           <div className="mb-4 sm:mb-0 sm:mr-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Search by Created By</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">በፈጻሚ ስም ይፍልጉ</label>
             <input
               type="text"
               value={searchCreatedBy}
@@ -132,13 +132,13 @@ const ReportComponent = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Serial Number</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated At</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('createdby')}</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('serial no')}</th>
+                {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th> */}
+                {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th> */}
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('fstatus')}</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}t</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}t</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -148,8 +148,8 @@ const ReportComponent = () => {
                     {report.file_created_by.first_name + " " + report.file_created_by.last_name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.file_serial_number}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_content}</td>
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_name}</td> */}
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_content}</td> */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_status}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.created_at).toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.updated_at).toLocaleDateString()}</td>

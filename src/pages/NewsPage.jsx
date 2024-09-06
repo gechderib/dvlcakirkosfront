@@ -15,7 +15,7 @@ const NewsPage = () => {
      <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-10">
       <h1 className="text-4xl font-bold">የዜና ገጽ</h1>
       <p className="mt-2 text-lg">
-      በቅርብ ዜናዎች፣ ታሪኮች እና ግንዛቤዎች እንደተዘመኑ ይቆዩ።
+      የቅርብ ዜናዎች፣ ታሪኮች እና ግንዛቤዎች እንደተዘመኑ ይቆዩ።
       </p>
      </div>
      <div className="p-10">

@@ -78,21 +78,19 @@ const YourWork = () => {
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">File Serial Number</th>
-            <th className="py-2 px-4 border-b">File Name</th>
-            <th className="py-2 px-4 border-b">File Status</th>
-            <th className="py-2 px-4 border-b">Service Type</th>
-            <th className="py-2 px-4 border-b">Owner Name</th>
-            <th className="py-2 px-4 border-b">Region</th>
-            <th className="py-2 px-4 border-b">Created At</th>
-            <th className="py-2 px-4 border-b">Updated At</th>
+            <th className="py-2 px-4 border-b">{t('serial no')}</th>
+            <th className="py-2 px-4 border-b">{t('fstatus')}</th>
+            <th className="py-2 px-4 border-b">{t('stype')}</th>
+            <th className="py-2 px-4 border-b">{t('oname')}</th>
+            <th className="py-2 px-4 border-b">{t('regio')}</th>
+            <th className="py-2 px-4 border-b">{t('created')}</th>
+            <th className="py-2 px-4 border-b">{t('updated')}</th>
           </tr>
         </thead>
         <tbody>
           {fileProcesses.map((fileProcess) => (
             <tr key={fileProcess.file_serial_number}>
               <td className="py-2 px-4 border-b">{fileProcess.file_serial_number}</td>
-              <td className="py-2 px-4 border-b">{fileProcess.file_name}</td>
               <td className="py-2 px-4 border-b">{fileProcess.file_status}</td>
               <td className="py-2 px-4 border-b">{fileProcess.service_type}</td>
               <td className="py-2 px-4 border-b">{fileProcess.owner_name}</td>

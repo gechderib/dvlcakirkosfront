@@ -298,11 +298,18 @@ const DocumentForm = () => {
               className="w-full border border-gray-300 rounded p-2"
               required={serviceFor === "vehicle"}
             >
-              <option value="">Select License Type</option>
-              <option value="service1">Service One</option>
-              <option value="service2">Service Two</option>
-              <option value="service3">Service Three</option>
-              <option value="service4">Service Four</option>
+              <option value="">የአገልግሎት ዓይነት ይምረጡ</option>
+              <option value="service1">የተሽከርካሪ ዋጋ ግምት ለማሳወቅ</option>
+              <option value="service2">ልዩ ልዩ አገልግሎቶች</option>
+              <option value="service3">አመታዊ ምርመራ</option>
+              <option value="service4">ቀረጥ ወይም ቀረጥ ነጻ ማንሳት </option>
+              <option value="service4">የአገልግሎት ለውጥ </option>
+              <option value="service4">መደበኛ ሰሌዳ መስጠት</option>
+              <option value="service4">መደበኛ ሰሌዳ መስጠት</option>
+              <option value="service4">ፋይል ዝውውር </option>
+              <option value="service4">የሰሌዳ መመለስ</option>
+              <option value="service4">መረጃ የሌለው</option>
+              <option value="service4">የሰሌዳ ለውጥ</option>
             </select>
           </div>}
 
@@ -315,11 +322,14 @@ const DocumentForm = () => {
               required={serviceFor === "driver"}
 
             >
-              <option value="">Select License Type</option>
-              <option value="level1">License One</option>
-              <option value="level2">License Two</option>
-              <option value="level3">License Three</option>
-              <option value="level4">License Four</option>
+              <option value="">የመንጃ ፍቃድ አይነት ይምረጡ</option>
+              <option value="level1">አውቶ</option>
+              <option value="level2">ህዝብ 1</option>
+              <option value="level3">ህዝብ 2</option>
+              <option value="level4">ህዝብ 3</option>
+              <option value="level4">ደረቅ 1</option>
+              <option value="level4">ደረቅ 2</option>
+              <option value="level4">ፈሳሽ </option>
             </select>
           </div>}
           {/* <div className="mb-4">

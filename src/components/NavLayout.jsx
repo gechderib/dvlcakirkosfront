@@ -105,39 +105,39 @@ const NavLayout = ({ children }) => {
                     onClick={() => navigate('/dashboard')}
                     className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                   >
-                    ዳሽቦርድ
+                    {t('dashbored')}
                   </a>
                 )}
                 <a
                   onClick={() => navigate('/comment')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                  አስተያየት
+                 {t('commentf')}
                 </a>
                 <a
                   onClick={() => navigate('/news')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                  ዜና
+                 {t('newsl')}
                 </a>
                 <a
                   onClick={() => navigate('/service')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                  አገልግሎቶች
+                  {t('service')}
                 </a>
                 <a
                   onClick={() => navigate('/help')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                  መረጃ
+                  {t('Information')}
                 </a>
                 {!localStorage.getItem('authToken') &&  (
                   <a
                     onClick={() => navigate('/login')}
                     className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                   >
-                    ግባ
+                    {t('login')}
                   </a>
                 )}
                 <LanguageSwitcher/>
@@ -162,7 +162,7 @@ const NavLayout = ({ children }) => {
                       }}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      ውጣ
+                      {t('sign')}
                     </a>
                     
                   </div>
@@ -189,20 +189,20 @@ const NavLayout = ({ children }) => {
               onClick={() => window.open('https://me-qr.com/mobile/pdf/22929263')}
               className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black"
             >
-              የ ተሽከርካሪ አሽከርካሪ ቅድመ ሁኔታ
+              {t('cndition')}
             </a>
             <a
               onClick={() => navigate('/comment')}
               className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black"
             >
-              አስተያየት
+              {t('commentf')}
             </a>
             {!localStorage.getItem('authToken') && (
               <a
                 onClick={() => navigate('/login')}
                 className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-black"
               >
-                ግባ
+                {t('login')}
               </a>
             )}
           </div>

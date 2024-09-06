@@ -66,16 +66,16 @@ const Home = () => {
 
         <div className='bg-white rounded flex flex-col items-center justify-center py-14 mx-56'>
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-8 w-2/3">
-          የ አሽከርካሪ ተሽከርካሪ ፈቃድና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽፈት ቤት
+          {t('title')}
         </h1>
         <p className="text-lg text-gray-700 mb-4 md:mb-10 md:w-2/3 text-center bg-5">
-          እንኳን ወደ መንጃ ፍቃድ እና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽ/ቤት ድህረ ገጽ በደህና መጡ። ዋና አላማችን አገልግሎቶቻችንን እና ስራዎችን በተመለከተ ከተጠቃሚዎች አስተያየቶችን እና አስተያየቶችን መቀበል ነው። የእርስዎን ግብአት ዋጋ እንሰጣለን እና ሀሳብዎን እንዲያካፍሉን እናበረታታዎታለን
+         {t('body')}
         </p>
         <button
           onClick={() => navigate("/comment")}
           className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300 md:ml-4"
         >
-          አስተያየት ይስጡ
+          {t('commenth')}
         </button>
        </div>
       </div>
@@ -90,9 +90,9 @@ const Home = () => {
               totalTickets={lastTicketNumber}
             /> : <div className='text-lg px-2 flex flex-col gap-2 mt-5'>
               <p className='font-bold text-3xl underline'>አገልግሎት የለም </p>
-              <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽ/ቤት ስለተጠቀማቹ እናመሰግናለን </p>
-              <p>የምንሠራው ለተወሰኑ ቀናት ብቻ ስለሆነ አገልግሎታችን በአሁኑ ጊዜ የማይገኝ መሆኑን ለማሳወቅ እንወዳለን። </p>
-              <p>እባክዎን የአገልግሎት መርሃ ግብራችንን ይመልከቱ ወይም በሚቀጥለው የአገልግሎት ቀን ላይ ለበለጠ መረጃ ያግኙን። </p>
+              <p>ውድ ደንበኛችን የአሽከርካሪ ተሽከርካሪ ፍቃድና ቁጥጥር ባለስልጣን ቂርቆስ ቅርንጫፍ ጽ/ቤት ስለተጠቀማቹ እናመሰግናለን </p>
+              <p>በዚህ ስአት አገልግሎት መስጠት አቁመናል። </p>
+              <p>አገልግሎት መስጠት ስንጀምር የትኬት መረጃን በመልቀቅ የምናሳውቅ ይሆናል። </p>
               <p>የእርስዎን ግንዛቤ እናመሰግናለን እናም በቅርቡ እርስዎን ለማገልገል በጉጉት እንጠባበቃለን።</p>
 
             </div>

@@ -94,19 +94,19 @@ const CommentsTable = ({isUser = false}) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-                አስተያየት የተሰጠው ሰራተኛ
+                {t('commentemp')}
               </th>
               <th scope="col" className="px-6 py-3">
-                የቲኬት ቁጥር
+              {t('commentw')}
               </th>
               <th scope="col" className="px-6 py-3">
-                የመስኮት ቁጥር
+              {t('commentt')}
               </th>
               <th scope="col" className="px-6 py-3">
-                የእርካታ ደረጃ ከ ፭
+              {t('comments')}
               </th>
               <th scope="col" className="px-6 py-3">
-                ይዘት
+              {t('commentc')}
               </th>
             </tr>
           </thead>

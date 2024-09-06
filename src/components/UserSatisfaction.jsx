@@ -20,7 +20,7 @@ const UserSatisfaction = ({ isHome = false }) => {
     <div className="container mx-auto p-4">
       {!isHome && <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white shadow-md rounded-lg p-4">
-          <h2 className="text-xl font-bold mb-4">Weekly User Satisfaction</h2>
+          <h2 className="text-xl font-bold mb-4">{t('custemersat')}</h2>
           {data.weekly_user_satisfaction.slice(0, 3).map((item, index) => (
             <div key={index} className="flex items-center mb-4">
               <img
@@ -40,7 +40,7 @@ const UserSatisfaction = ({ isHome = false }) => {
         </div>
 
         <div className="bg-white shadow-md rounded-lg p-4">
-          <h2 className="text-xl font-bold mb-4">Weekly User Satisfaction</h2>
+          <h2 className="text-xl font-bold mb-4">{t('custemersatov')}</h2>
           {data.weekly_user_satisfaction.slice(0, 3).map((item, index) => (
             <div key={index} className="flex items-center mb-4">
               <img
@@ -64,7 +64,7 @@ const UserSatisfaction = ({ isHome = false }) => {
 
       {isHome &&
         <div className="bg-white shadow-md rounded-lg p-4">
-          <h2 className="text-xl font-bold mb-4 text-center">የሳምንቱ ምርጥ ፈፃሚወች</h2>
+          <h2 className="text-xl font-bold mb-4 text-center">{t('custemersato')}</h2>
           <div className="md:flex gap-5">
             {data.weekly_user_satisfaction.slice(0, 3).map((item, index) => (
               <div key={index} className=" items-center mb-4">

@@ -56,13 +56,13 @@ const Login = () => {
       <div className="flex  flex-col justify-center items-center px-6 pt-12 pb-72 lg:px-8 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {/* <img className="mx-auto" src={logo} alt="Company Logo"></img> */}
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">ወደ መለያዎ ይግቡ</h2>
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">{t('signin')}</h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
-              <label htmlFor="phone_number" className="block text-sm font-medium leading-6 text-gray-900">ስልክ ቁጥር</label>
+              <label htmlFor="phone_number" className="block text-sm font-medium leading-6 text-gray-900">{t('phoneno')} </label>
               <div className="mt-2">
                 <input
                   id="phone_number"
@@ -79,7 +79,7 @@ const Login = () => {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">የይለፍ ቃል
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900"> {t('password')}
                 </label>
               </div>
               <div className="mt-2">

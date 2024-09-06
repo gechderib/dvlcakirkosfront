@@ -33,12 +33,12 @@ const GeneralCommentTable = () => {
     } else {
       return comments.map((comment) => (
         <div key={comment.id} className="bg-white shadow-md rounded-lg p-4">
-          <p className="font-bold">የአስተያየት ቁጥር: {comment.id}</p>
+          <p className="font-bold">{t('commentn')}: {comment.id}</p>
           <p>{comment.content}</p>
-          <p>የእርካታ ደረጃ: {comment.level_of_satisfaction}</p>
-          <p>የተፈጠረው በ
+          <p>{t('comments')}: {comment.level_of_satisfaction}</p>
+          <p>{t('commentb')}
           : {new Date(comment.created_at).toLocaleString()}</p>
-          <p>የዘመነ በ
+          <p>{t('commentd')}
           : {new Date(comment.updated_at).toLocaleString()}</p>
         </div>
       ))
