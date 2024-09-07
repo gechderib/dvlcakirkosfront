@@ -137,8 +137,8 @@ const ReportComponent = () => {
                 {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th> */}
                 {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th> */}
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('fstatus')}</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}t</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}t</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('updated')}</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -150,7 +150,7 @@ const ReportComponent = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.file_serial_number}</td>
                   {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_name}</td> */}
                   {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_content}</td> */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_status}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{t(`${report.file_status}`)}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.created_at).toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.updated_at).toLocaleDateString()}</td>
                 </tr>

@@ -55,17 +55,23 @@
    "region":"ክልል",
    "created":"የተፈጠረበት ቅን",
    "updated":"የተቀየረበት ቅን",
-   "createdby":"የፈጠተረው ሰራተኛ",
+   "createdby":"የፈጠረው ሰራተኛ",
    "contactusviaemail":"በኢሜል ያግኙን",
    "FollowusonFacebook":"በፌስቡክ ይከታተሉን",
    "FacebookPage":"የፌስቡክ ገጽ",
-   "start":"Start",
-   "checked":"Checked",
-   "scanned":"Scanned",
-   "recorded":"Recorded",
-   "requested":"Requested",
-   "approved":"Approved",
-   "unchecked":"Unchecked"  
+   "start":"ወደ ኦዲተር ተልኳል",
+   "checked":"ተረጋግጦል",
+   "scanned":"ተቃኝቷል",
+   "recorded":"ተመዝግቧል ",
+   "requested":"የተጠየቀ",
+   "approved":"ጸድቋል",
+   "uncheck":"ያልተረጋገጠ", 
+   "user1":"ፈጻሚ",
+   "user2":"ኦዲተር",
+   "user3=":"እስካነር",
+   "user4":"መዝገብ ቤት",
+   "staff":"ስታፍ"
+   
 
 
 }

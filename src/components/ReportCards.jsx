@@ -36,7 +36,7 @@ const ReportCards = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-1 sm:px-2 md:px-6 lg:px-10 gap-5">
                 {reportData.map((item) => (
                     <div key={item.file_status} className=" bg-white p-6 rounded-lg shadow-md w-full sm:w-60 md:w-72 lg:w-80">
-                        <h2 className="text-xl font-bold mb-2">{item.file_status.charAt(0).toUpperCase() + item.file_status.slice(1)}</h2>
+                        <h2 className="text-xl font-bold mb-2">{ t(`${item.file_status}`) }</h2>
                         <p className="text-2xl font-semibold">{item.count}</p>
                     </div>
                 ))}

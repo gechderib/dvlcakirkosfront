@@ -146,12 +146,13 @@ const NavLayout = ({ children }) => {
             
             {/* User Info and Logout */}
             {localStorage.getItem('authToken') && (
-              <div className="relative flex items-center space-x-4">
+              <div className="relative flex items-center space-x-10">
                 <div onClick={() => setDropdownOpen(!dropdownOpen)} className="cursor-pointer text-white">
                   {user.first_name} {user.last_name}
                 </div>
+                <div className="w-1"></div>
                 {user.profile_pic && (
-                  <img className="h-8 w-8 rounded-full" src={user.profile_pic} alt="User Profile" />
+                  <img onClick={()=>setDropdownOpen(false)} className="h-8 w-8 rounded-full" src={user.profile_pic} alt="User Profile" />
                 )}
                 {dropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">

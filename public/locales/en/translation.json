@@ -65,6 +65,11 @@
           "recorded":"Recorded",
           "requested":"Requested",
           "approved":"Approved",
-          "unchecked":"Unchecked"         
+          "uncheck":"Unchecked",    
+          "user1":"Executor",
+          "user2":"Auditor",
+          "user3=":"Scanner ",
+          "user4":"Registry" ,
+          "staff":"Staff"    
 
 }

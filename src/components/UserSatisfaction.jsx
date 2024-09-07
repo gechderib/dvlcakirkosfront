@@ -31,7 +31,7 @@ const UserSatisfaction = ({ isHome = false }) => {
               <div>
 
                 <h3 className="text-lg font-semibold">{item.user.first_name} {item.user.last_name}</h3>
-                <p className="text-gray-600">Role: {item.user.role}</p>
+                <p className="text-gray-600">Role: {t(`${item.user.role}`) }</p>
                 <p className="text-gray-600">Window Number: {item.user.window_number}</p>
                 <p className="text-gray-600">Average Satisfaction: {item.average_satisfaction.toFixed(1)}</p>
               </div>
@@ -40,7 +40,7 @@ const UserSatisfaction = ({ isHome = false }) => {
         </div>
 
         <div className="bg-white shadow-md rounded-lg p-4">
-          <h2 className="text-xl font-bold mb-4">{t('custemersatov')}</h2>
+          <h2 className="text-xl font-bold mb-4">{t('custemersat')}</h2>
           {data.weekly_user_satisfaction.slice(0, 3).map((item, index) => (
             <div key={index} className="flex items-center mb-4">
               <img
@@ -51,7 +51,7 @@ const UserSatisfaction = ({ isHome = false }) => {
               <div>
 
                 <h3 className="text-lg font-semibold">{item.user.first_name} {item.user.last_name}</h3>
-                <p className="text-gray-600">Role: {item.user.role}</p>
+                <p className="text-gray-600">Role: {t(`${item.user.role}`) } </p>
                 <p className="text-gray-600">Window Number: {item.user.window_number}</p>
                 <p className="text-gray-600">Average Satisfaction: {item.average_satisfaction.toFixed(1)}</p>
               </div>
@@ -64,7 +64,7 @@ const UserSatisfaction = ({ isHome = false }) => {
 
       {isHome &&
         <div className="bg-white shadow-md rounded-lg p-4">
-          <h2 className="text-xl font-bold mb-4 text-center">{t('custemersato')}</h2>
+          <h2 className="text-xl font-bold mb-4 text-center">{t('custemersat')}</h2>
           <div className="md:flex gap-5">
             {data.weekly_user_satisfaction.slice(0, 3).map((item, index) => (
               <div key={index} className=" items-center mb-4">
@@ -75,7 +75,7 @@ const UserSatisfaction = ({ isHome = false }) => {
                 />
                 <div>
                   <h3 className="text-lg font-semibold">{item.user.first_name} {item.user.last_name}</h3>
-                  <p className="text-gray-600">Role: {item.user.role}</p>
+                  <p className="text-gray-600">Role:  {t(`${item.user.role}`) }</p>
                   <p className="text-gray-600">Window Number: {item.user.window_number}</p>
                   <p className="text-gray-600">Average Satisfaction: {item.average_satisfaction.toFixed(1)}</p>
                 </div>

@@ -55,7 +55,8 @@ const UsersTable = () => {
           </td>
           <td className="px-6 py-4">
             <div className="flex items-center">
-              {user.role}
+              {t(`${user.role}`) }
+              
             </div>
           </td>
           <td className="px-6 py-4">

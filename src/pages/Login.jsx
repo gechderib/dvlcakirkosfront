@@ -35,6 +35,8 @@ const Login = () => {
         localStorage.setItem('authToken', data.token)
         localStorage.setItem('user', JSON.stringify(data));
 
+        sessionStorage.setItem('authToken',data.token)
+
         setPassword("")
         setPhoneNumber("")
         navigate("/dashboard")
