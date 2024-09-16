@@ -374,7 +374,7 @@ const DocumentForm = () => {
 
       {/* Documents List */}
       <div className="md:w-full p-4">
-        <h2 className="text-xl mb-4 text-blue-600">Approved Documents List</h2>
+        <h2 className="text-xl mb-4 text-blue-600">File Out Documents List</h2>
         <table className="min-w-full border border-gray-300">
           <thead>
             <tr>
