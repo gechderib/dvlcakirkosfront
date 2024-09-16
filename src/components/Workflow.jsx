@@ -22,30 +22,49 @@ const DocumentForm = () => {
   const [selected, setSelected] = useState('existingFile');
   const { t, i18n } = useTranslation();
 
+  const token = localStorage.getItem('authToken');
+
   // Handle checkbox change
 
 
   // Fetch documents
   useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        const token = localStorage.getItem('authToken'); // Retrieve token from local storage
-        if (!token) {
-          throw new Error('No authentication token found.');
-        }
-        const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=start', {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
-        setDocuments(response.data);
-      } catch (error) {
-        console.error('There was an error fetching the documents!', error);
-      }
-    };
+   
 
     fetchDocuments();
   }, []);
+
+  const fetchDocuments = async () => {
+    try {
+      const token = localStorage.getItem('authToken'); // Retrieve token from local storage
+      if (!token) {
+        throw new Error('No authentication token found.');
+      }
+      const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=approved', {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setDocuments(response.data);
+    } catch (error) {
+      console.error('There was an error fetching the documents!', error);
+    }
+  };
+  
+  const updateDocumentStatusUser2 = async (id, fileStatus) => {
+    try {
+     const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: `${fileStatus}` }, {
+      headers: {
+       Authorization: `Token ${token}`,
+      },
+     });
+     fetchDocuments();
+     
+     // showToastMessage(); 
+    } catch (error) {
+     console.error('Error updating document status:', error);
+    }
+   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -185,7 +204,7 @@ const DocumentForm = () => {
   };
 
   return (
-    <div className="md:flex">
+    <div className="">
       {/* Form for adding a new document */}
       <div className="md:w-full p-4">
         {/* <h2 className="text-xl mb-4">Add Document</h2> */}
@@ -354,13 +373,12 @@ const DocumentForm = () => {
       </div>
 
       {/* Documents List */}
-      {/* <div className="md:w-1/2 p-4">
-        <h2 className="text-xl mb-4">Documents List</h2>
+      <div className="md:w-full p-4">
+        <h2 className="text-xl mb-4 text-blue-600">Approved Documents List</h2>
         <table className="min-w-full border border-gray-300">
           <thead>
             <tr>
               <th className="border p-2">File Serial Number</th>
-              <th className="border p-2">File Name</th>
               <th className="border p-2">File Status</th>
               <th className="border p-2">Service For</th>
               <th className="border p-2">Plate Code</th>
@@ -368,13 +386,13 @@ const DocumentForm = () => {
               <th className="border p-2">Owner Name</th>
               <th className="border p-2">Driver License Number</th>
               <th className="border p-2">License Type</th>
+              <th className="border p-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {documents.map((doc) => (
               <tr key={doc.id}>
                 <td className="border p-2">{doc.file_serial_number}</td>
-                <td className="border p-2">{doc.file_name}</td>
                 <td className="border p-2">{doc.file_status}</td>
                 <td className="border p-2">{doc.service_for}</td>
                 <td className="border p-2">{doc.plate_code}</td>
@@ -382,11 +400,17 @@ const DocumentForm = () => {
                 <td className="border p-2">{doc.owner_name}</td>
                 <td className="border p-2">{doc.driver_license_number}</td>
                 <td className="border p-2">{doc.license_type}</td>
+                <td className="border py-2 px-5">
+                  <button onClick={()=>{
+                    console.log("llllllllllllllllllllllllllllll")
+                    updateDocumentStatusUser2(doc.id, 'start')
+                  }} className='bg-blue-600 px-3 py-2 rounded-xl text-white cursor-pointer hover:bg-blue-800'>Start</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   );
 };

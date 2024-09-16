@@ -69,9 +69,9 @@ const DocumentTable = ({ fetchType, updateTo }) => {
   }
  };
 
- const updateDocumentStatusUser2 = async (id) => {
+ const updateDocumentStatusUser2 = async (id, fileStatus) => {
   try {
-   const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: 'uncheck' }, {
+   const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: `${fileStatus}` }, {
     headers: {
      Authorization: `Token ${token}`,
     },
@@ -145,12 +145,29 @@ const DocumentTable = ({ fetchType, updateTo }) => {
         >
          {fetchType === "start" ? "Check" : fetchType === "checked" ? "Scanned" : fetchType === "scanned" ? "Record" : fetchType === "requested" ? "Approve" : fetchType === "approved" ? "File Out" : "Recorded"}
         </button>
+
         {user.role === "user2" && fetchType === "start" && <button
-         onClick={() => updateDocumentStatusUser2(document.id)}
+         onClick={() => updateDocumentStatusUser2(document.id, 'uncheck')}
          className="bg-red-500 text-white px-4 py-2 rounded"
         >
          Unchek
         </button>}
+
+        {user.role === "admin" && fetchType === "requested" && <button
+         onClick={() => updateDocumentStatusUser2(document.id, 'disapproved')}
+         className="bg-red-500 text-white px-4 py-2 rounded"
+        >
+         Disapproved
+        </button>}
+
+        {user.role === "user4" && fetchType === "approved" && <button
+         onClick={() => updateDocumentStatusUser2(document.id, 'nofile')}
+         className="bg-red-500 text-white px-4 py-2 rounded"
+        >
+         No File
+        </button>}
+
+        
        </td>
       </tr>
      ))}
