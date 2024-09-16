@@ -40,7 +40,7 @@ const DocumentForm = () => {
       if (!token) {
         throw new Error('No authentication token found.');
       }
-      const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=approved', {
+      const response = await axios.get('https://dvlcadigitalkirkos.onrender.com/document/all/?file_status=fileout', {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -50,7 +50,7 @@ const DocumentForm = () => {
       console.error('There was an error fetching the documents!', error);
     }
   };
-  
+
   const updateDocumentStatusUser2 = async (id, fileStatus) => {
     try {
      const response = await axios.patch(`https://dvlcadigitalkirkos.onrender.com/document/update/${id}/`, { file_status: `${fileStatus}` }, {
