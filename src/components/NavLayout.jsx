@@ -1,5 +1,5 @@
 
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/logo.jpg';
 import addis from '../assets/addis.png';
 import { useNavigate } from 'react-router-dom';
@@ -17,9 +17,9 @@ const NavLayout = ({ children }) => {
   const LanguageSwitcher = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('en');
     const [isOpen, setIsOpen] = useState(false);
-  
+
     const languages = ['en', 'am'];
-  
+
     const toggleDropdown = () => setIsOpen(!isOpen);
 
     const handleSelectLanguage = (language) => {
@@ -27,7 +27,7 @@ const NavLayout = ({ children }) => {
       setSelectedLanguage(language);
       setIsOpen(false);
     };
-  
+
     return (
       <div className="relative inline-block text-left">
         <div>
@@ -36,7 +36,7 @@ const NavLayout = ({ children }) => {
             onClick={toggleDropdown}
             className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            {selectedLanguage === "en"?"English":"አማርኛ"}
+            {selectedLanguage === "en" ? "English" : "አማርኛ"}
             <svg
               className="-mr-1 ml-2 h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const NavLayout = ({ children }) => {
             </svg>
           </button>
         </div>
-  
+
         {isOpen && (
           <div className="absolute z-20 right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
@@ -65,7 +65,7 @@ const NavLayout = ({ children }) => {
                   onClick={() => handleSelectLanguage(language)}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  {language === 'en' ?"English":"አማርኛ"}
+                  {language === 'en' ? "English" : "አማርኛ"}
                 </a>
               ))}
             </div>
@@ -84,7 +84,7 @@ const NavLayout = ({ children }) => {
             <div className="flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
               <img className="h-12 rounded-full w-auto" src={logo} alt="Your Company" />
             </div>
-            
+
             {/* Navigation Links */}
             <div className="hidden sm:flex sm:items-center sm:justify-center flex-grow">
               <div className="flex space-x-4">
@@ -112,13 +112,13 @@ const NavLayout = ({ children }) => {
                   onClick={() => navigate('/comment')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                 {t('commentf')}
+                  {t('commentf')}
                 </a>
                 <a
                   onClick={() => navigate('/news')}
                   className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
                 >
-                 {t('newsl')}
+                  {t('newsl')}
                 </a>
                 <a
                   onClick={() => navigate('/service')}
@@ -132,7 +132,7 @@ const NavLayout = ({ children }) => {
                 >
                   {t('Information')}
                 </a>
-                {!localStorage.getItem('authToken') &&  (
+                {!localStorage.getItem('authToken') && (
                   <a
                     onClick={() => navigate('/login')}
                     className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
@@ -140,10 +140,10 @@ const NavLayout = ({ children }) => {
                     {t('login')}
                   </a>
                 )}
-                <LanguageSwitcher/>
+                <LanguageSwitcher />
               </div>
             </div>
-            
+
             {/* User Info and Logout */}
             {localStorage.getItem('authToken') && (
               <div className="relative flex items-center space-x-10">
@@ -152,7 +152,7 @@ const NavLayout = ({ children }) => {
                 </div>
                 <div className="w-1"></div>
                 {user.profile_pic && (
-                  <img onClick={()=>setDropdownOpen(false)} className="h-8 w-8 rounded-full" src={user.profile_pic} alt="User Profile" />
+                  <img onClick={() => setDropdownOpen(false)} className="h-8 w-8 rounded-full" src={user.profile_pic} alt="User Profile" />
                 )}
                 {dropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
@@ -165,16 +165,16 @@ const NavLayout = ({ children }) => {
                     >
                       {t('sign')}
                     </a>
-                    
+
                   </div>
                 )}
               </div>
             )}
-              <div className="flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
               <img className="h-12 rounded-full w-auto" src={addis} alt="Your Company" />
             </div>
           </div>
-          
+
         </div>
 
         {/* Mobile Menu */}
@@ -208,12 +208,10 @@ const NavLayout = ({ children }) => {
             )}
           </div>
         </div>
-        
+
       </nav>
       {children}
-      <div className="flex items-end w-full bg-white">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

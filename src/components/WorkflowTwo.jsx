@@ -128,11 +128,24 @@ const DocumentTable = ({ fetchType, updateTo }) => {
       <th className="py-2 px-4 border-b">Actions</th>
      </tr>
     </thead>
+
+    {/* <option value="service1">የተሽከርካሪ ዋጋ ግምት ለማሳወቅ</option>
+              <option value="service2">ልዩ ልዩ አገልግሎቶች</option>
+              <option value="service3">አመታዊ ምርመራ</option>
+              <option value="service4">ቀረጥ ወይም ቀረጥ ነጻ ማንሳት </option>
+              <option value="service4">የአገልግሎት ለውጥ </option>
+              <option value="service4">መደበኛ ሰሌዳ መስጠት</option>
+              <option value="service4">መደበኛ ሰሌዳ መስጠት</option>
+              <option value="service4">ፋይል ዝውውር </option>
+              <option value="service4">የሰሌዳ መመለስ</option>
+              <option value="service4">መረጃ የሌለው</option>
+              <option value="service4">የሰሌዳ ለውጥ</option> */}
+
     <tbody>
      {currentDocuments.map((document) => (
       <tr key={document.id}>
        <td className="py-2 px-4 border-b">{document.file_serial_number}</td>
-       <td className="py-2 px-4 border-b">{document.file_name}</td>
+       <td className="py-2 px-4 border-b">{document.service_type=="service1"?"የተሽከርካሪ ዋጋ ግምት ለማሳወቅ":document.service_type=="service2"?"ልዩ ልዩ አገልግሎቶች":document.service_type=="service3"?"አመታዊ ምርመራ":"ቀረጥ ወይም ቀረጥ ነጻ ማንሳት"}</td>
        <td className="py-2 px-4 border-b">
         {document.file_created_by.first_name} {document.file_created_by.last_name}
        </td>
