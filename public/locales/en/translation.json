@@ -70,6 +70,7 @@
           "user2":"Auditor",
           "user3=":"Scanner ",
           "user4":"Registry" ,
-          "staff":"Staff"    
+          "staff":"Staff"  ,
+          "serviceType":"Service Type"  
 
 }

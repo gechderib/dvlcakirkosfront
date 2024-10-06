@@ -14,7 +14,7 @@ const ReportComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchCreatedBy, setSearchCreatedBy] = useState(''); // New state for searching by Created By
   const [itemsPerPage] = useState(10); // Number of items per page
-  const statuses = ['start', 'checked', 'scanned', 'recorded','requested', 'approved','fileout'];
+  const statuses = ['start', 'checked', 'scanned', 'recorded', 'requested', 'approved', 'fileout'];
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -128,14 +128,14 @@ const ReportComponent = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto h-96">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('createdby')}</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('serial no')}</th>
                 {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th> */}
-                {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th> */}
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('serviceType')}</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('fstatus')}</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('created')}</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t('updated')}</th>
@@ -147,9 +147,15 @@ const ReportComponent = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {report.file_created_by.first_name + " " + report.file_created_by.last_name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.file_serial_number}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{(report.region=="aa"?"A.A":"ET" )+ " - " + (report.plate_code == "plate1"?"1":report.plate_code == "plate2"?"2": report.plate_code == "plate3" ? "3": report.plate_code == "plate4" ? "4": report.plate_code == "plate4"? "5": report.plate_code == "plate5"? "EU" : "" ) + " - " + report.file_serial_number}</td>
                   {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_name}</td> */}
-                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.file_content}</td> */}
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{
+                  report.service_type == "service1" 
+                  ? "sdlkfj" : report.service_type == "service2" 
+                  ? "kdfjd" : report.service_type == "service3" 
+                  ? "flkdj" : report.service_type == "service4" 
+                  ? "dkjf" : "dkfj"}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{t(`${report.file_status}`)}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.created_at).toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(report.updated_at).toLocaleDateString()}</td>
@@ -160,7 +166,7 @@ const ReportComponent = () => {
         </div>
 
         {/* Pagination Controls */}
-        <div className="mt-4 flex justify-between items-center">
+        <div className="mb-10 flex justify-between items-center">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -179,6 +185,7 @@ const ReportComponent = () => {
             Next
           </button>
         </div>
+
       </div>
     </div>
   );

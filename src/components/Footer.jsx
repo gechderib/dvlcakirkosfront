@@ -36,7 +36,7 @@ const Footer = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <footer className="bg-gray-800 text-white py-14 px-20 w-full mt-16 mb-0">
+    <div className="bg-gray-800 text-white py-4 px-20 w-full fixed bottom-0">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <p className="text-lg">
@@ -55,7 +55,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
